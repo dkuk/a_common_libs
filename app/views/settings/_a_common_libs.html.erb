@@ -1,0 +1,23 @@
+<% defaults = Redmine::Plugin::registered_plugins[:a_common_libs].settings[:default] %>
+<% enable_select2_lib = @settings['enable_select2_lib'] || defaults['enable_select2_lib'] %>
+<% enable_highcharts_lib = @settings['enable_highcharts_lib'] || defaults['enable_highcharts_lib'] %>
+<% enable_bootstrap_lib = @settings['enable_bootstrap_lib'].nil? ? defaults['enable_bootstrap_lib'] : @settings['enable_bootstrap_lib']  %>
+
+
+
+<table cellspacing="15">
+  <tr>
+    <td><%=l(:settings_enable_select2_lib)%>: </td>
+    <td><%=check_box_tag 'settings[enable_select2_lib]', true, enable_select2_lib %></td>
+  </tr>
+
+  <tr>
+    <td><%=l(:settings_enable_highcharts_lib)%>: </td>
+    <td><%=check_box_tag 'settings[enable_highcharts_lib]', true, enable_highcharts_lib %></td>
+  </tr>
+
+  <tr>
+    <td><%=l(:settings_enable_bootstrap_lib)%>: </td>
+    <td><%=check_box_tag 'settings[enable_bootstrap_lib]', true, enable_bootstrap_lib %></td>
+  </tr>
+</table>
