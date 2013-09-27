@@ -4,6 +4,7 @@
 <% if settings['enable_bootstrap_lib'].nil? ? defaults['enable_bootstrap_lib'] : settings['enable_bootstrap_lib'] %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :plugin => :a_common_libs %>
   <%= javascript_include_tag 'bootstrap.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
 <% end %>
 
 <% if settings['enable_highcharts_lib'].nil? ? defaults['enable_highcharts_lib'] : settings['enable_highcharts_lib'] %>
