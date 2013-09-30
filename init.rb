@@ -1,5 +1,5 @@
 Redmine::Plugin.register :a_common_libs do
-  name 'Plugin for optionaly including libraries in Redmine'
+  name 'A common libraries'
   author 'Danil Kukhlevskiy'
   description 'This is a plugin for including common libraries'
   version '0.0.1'
