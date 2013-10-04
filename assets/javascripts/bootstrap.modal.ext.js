@@ -1,6 +1,5 @@
 
 function resize_bs_modal(obj){
-
   /* handle width */
   var w_width = $(window).width();
   var paddings_w = $(obj).outerWidth() - $(obj).width();

@@ -3,3 +3,4 @@ ru:
   settings_enable_select2_lib: "Загружать библиотеку select2"
   settings_enable_highcharts_lib: "Загружать библиотеку highcharts"  
   settings_enable_bootstrap_lib: "Загружать библиотеку Twitter Bootstrap"
+  settings_enable_modals_lib: "Разрешить библиотеку модальных окон"
