@@ -68,6 +68,16 @@ function resize_rm_modal(obj){
   }
 }
 
+function show_rm_modal(obj) {
+  $('#rm_modal_overlay').show();
+  $(obj).show();  
+}
+
+function hide_rm_modal() {
+  $('.rm_modal').hide();
+  $('#rm_modal_overlay').hide();  
+}
+
 $(document).ready(function(){
 
   $(document.body).on('click', '.rm_modal_link', function(){
@@ -119,8 +129,7 @@ $(document).ready(function(){
   });
 
   $(document.body).on('click','#rm_modal_overlay, .rm_modal_close', function(){
-    $('.rm_modal').hide();
-    $('#rm_modal_overlay').hide();
+    hide_rm_modal();
     return false;
   });
 
