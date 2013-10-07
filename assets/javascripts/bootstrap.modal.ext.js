@@ -2,24 +2,26 @@
 function resize_bs_modal(obj){
   /* handle width */
   var w_width = $(window).width();
+  var w_height = $(window).height();
   var paddings_w = $(obj).outerWidth() - $(obj).width();
+  var px_width;
+  var px_height;
+  // var max_px_height = 0;
 
   if( $(obj).attr('data-width') !== undefined ){
     $(obj).css('margin-left', 0);
     if($(obj).attr('data-width').indexOf('%') > -1 ) {
-      var left = (100 - parseInt($(obj).attr('data-width'))) / 2;
-      $(obj).css('left', left.toString()+'%');
-      $(obj).css('width', $(obj).attr('data-width')+'%');
+      px_width = w_width*parseInt($(obj).attr('data-width'))/100;
     }
     else {
-      var data_width = parseInt($(obj).attr('data-width'));
-      var left = (w_width - data_width - paddings_w) / 2;
-      $(obj).css('left', left);
-      $(obj).css('width', data_width); 
+      px_width = parseInt($(obj).attr('data-width'));
     }
+
+    var left = (w_width - px_width - paddings_w) / 2;
+    $(obj).css('left', left);
+    $(obj).css('width', px_width);
   }
   else if( $(obj).attr('data-min-width') !== undefined ) {
-
     $(obj).css('margin-left', 0);    
     $(obj).css('width', 'auto');
 
@@ -29,12 +31,8 @@ function resize_bs_modal(obj){
   }
 
 
-
-
-
   var modal_body = $(obj).find('.modal-body')
-  if( $(obj).attr('data-height') !== undefined ){
-    var w_height = $(window).height();
+  if( $(obj).attr('data-height') !== undefined ){    
     var ext_height = 0;
     if( $(obj).find('.modal-footer').length == 1 ) {
       ext_height += $(obj).find('.modal-footer').outerHeight()
@@ -44,21 +42,16 @@ function resize_bs_modal(obj){
     }
     var paddings_h = modal_body.outerHeight() - modal_body.height();
 
-    var data_height = parseInt($(obj).attr('data-height'));
-    var max_modal_height = 0;
-
     if($(obj).attr('data-height').indexOf('%') > -1 ) {
-      max_modal_height = w_height*data_height/100;
-      var top = (100 - data_height) / 2;
-      $(obj).css('top', top.toString()+'%');
+      px_height = w_height*parseInt($(obj).attr('data-height'))/100;
     }
     else {
-      max_modal_height = data_height;
-      var top = (w_height - data_height) / 2;
-      $(obj).css('top', top);
+      px_height = parseInt($(obj).attr('data-height'));
     }
 
-    modal_body.css('max-height', max_modal_height-ext_height-paddings_h);
+    var top = (w_height - px_height) / 2;
+    $(obj).css('top', top);
+    modal_body.css('max-height', px_height-ext_height-paddings_h);
     
 
     // if(modal_body.height() < modal_height-ext_height) {
@@ -80,16 +73,24 @@ $(document).ready(function(){
     resize_bs_modal(this);
   });
 
-  $(document.body).on('click','[data-toggle=modal]', function(){
-    if( $(this).attr('data-target') !== undefined && $(this).attr('data-modal-height') !== undefined ) {
-      // todo: make for href='#modalId'
-      $($(this).attr('data-target')).attr('data-height',$(this).attr('data-modal-height'));
+  $(document.body).on('click','[data-toggle=modal]', function() {
+    if( $(this).attr('data-target') !== undefined ) {
+      if( $(this).attr('data-modal-height') !== undefined ) {
+        // todo: make for href='#modalId'
+        $($(this).attr('data-target')).attr('data-height',$(this).attr('data-modal-height'));
+      }
+  
+      if( $(this).attr('data-modal-width') !== undefined ) {
+        // todo: make for href='#modalId'
+        $($(this).attr('data-target')).attr('data-width',$(this).attr('data-modal-width'));
+      }
+  
+      if( $(this).attr('data-modal-min-width') !== undefined ) {
+        // todo: make for href='#modalId'
+        $($(this).attr('data-target')).attr('data-min-width',$(this).attr('data-modal-min-width'));
+      }
     }
 
-    if( $(this).attr('data-target') !== undefined && $(this).attr('data-modal-width') !== undefined ) {
-      // todo: make for href='#modalId'
-      $($(this).attr('data-target')).attr('data-width',$(this).attr('data-modal-width'));
-    }    
   });
 
   $(window).on('resize', function(){
