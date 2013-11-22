@@ -3,5 +3,4 @@ en:
   settings_enable_select2_lib: "Enable to load Select2 library"
   settings_enable_highcharts_lib: "Enable to load Highcharts library"
   settings_enable_bootstrap_lib: "Enable to load Twitter Bootstrap library"
-  settings_enable_modals_lib: "Enable to load modal windows library"
 

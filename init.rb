@@ -10,7 +10,8 @@ Redmine::Plugin.register :a_common_libs do
     :default => {
       'enable_bootstrap_lib' => false,
       'enable_select2_lib' => false,
-      'enable_highcharts_lib' => false
+      'enable_highcharts_lib' => false,
+      'enable_bootstrap_lib_for_luxury_buttons' => false
     }
 end
 
