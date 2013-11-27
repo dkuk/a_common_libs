@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
 <% else %>
   <% if settings['enable_bootstrap_lib_for_luxury_buttons'].nil? ? defaults['enable_bootstrap_lib_for_luxury_buttons'] : settings['enable_bootstrap_lib_for_luxury_buttons'] %>
-    <%= javascript_include_tag 'bootstrap.modal.min.js', :plugin => :a_common_libs %>
+    <%= javascript_include_tag 'bootstrap.luxury_buttons.min.js', :plugin => :a_common_libs %>
     <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
     <%= stylesheet_link_tag 'bootstrap.luxury_buttons.min.css', :plugin => :a_common_libs %>
   <% end %>
