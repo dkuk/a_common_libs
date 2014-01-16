@@ -1,0 +1,135 @@
+input.qmp {
+  background: #FFF url(../images/calendar_range.png) no-repeat 2px 50%;
+  padding-left: 24px !important;
+}
+
+.qmp-selected {
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+.qmp-range-edge {
+   background-color: #EF7F1A; 
+   /*border-radius: 2px;*/
+}
+
+.qmpicker {
+  position: absolute;
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  z-index: 9999;
+  background: #FFF;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset; 
+}
+
+.qmp-daterange {
+  cursor: pointer;
+}
+
+.qmp-daterange span{
+  color: #333;
+  border-bottom: 1px dotted #333;
+}
+
+.next-year, .prev-year {
+  cursor: pointer;
+}
+
+.next-year {
+  float: right;
+}
+
+.prev-year {
+  float: left;
+}
+
+.next-year, .prev-year span{
+  color: #333;
+  border-bottom: 1px dotted #333;
+}
+
+.qmp-year {
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  margin: 2px 5px;
+  margin-left: -1px;
+  margin-right: 1px;
+  border-left: 1px solid #CCC;
+  padding: 1px 3px;
+}
+
+.qmp-year-head {
+  overflow: hidden;
+  padding: 2px 10px;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 10px;
+}
+
+.qmp-year-label {
+  margin: auto;
+  display: inline-block;
+  padding: 2px 7px;
+}
+
+.qmp-quartal {
+  overflow: hidden;
+  border: 0;
+  border-spacing: 0;
+  margin: 2px;
+}
+
+.qmp-month {
+  padding: 2px 5px;
+  min-width: 30px; 
+}
+
+.qmp-first-mon {
+  border-left: 2px solid #999;
+  border-top-left-radius: 3px;  
+}
+
+.qmp-mid-mon {
+  border-left: 2px solid #999;
+  padding: 2px 1px; 
+}
+
+.qmp-mid-mon:before {
+  content: '';
+  border: 2px solid #999;
+  margin-top: 9px;
+  margin-left: -6px;
+  z-index: 1000001;
+  float: left;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.qmp-last-mon {
+  border-left: 2px solid #999;
+  border-bottom-left-radius: 3px;  
+}
+
+.qmp-quartal-label {
+  padding: 2px 5px;
+  min-width: 40px;
+  margin-right: 3px;
+}
+
+.qmp-quartal-cell {
+ overflow: hidden;
+}
+
+.qmp-bottom {
+    overflow: hidden;
+    clear: both;
+    padding: 2px;
+    border-top: 1px solid #ccc;
+}
+
+.R {
+    float: right;
+}

@@ -22,3 +22,9 @@
   <%= stylesheet_link_tag :select2, :plugin => :a_common_libs %>
   <%= javascript_include_tag :a_common_libs, :plugin => :a_common_libs %>
 <% end %>
+
+<% if settings['enable_qmpicker'].nil? ? defaults['enable_qmpicker'] : settings['enable_qmpicker'] %>
+  <%= javascript_include_tag 'moment.js', :plugin => :a_common_libs %>
+  <%= stylesheet_link_tag :quartermonthpicker, :plugin => :a_common_libs %>
+  <%= javascript_include_tag :quartermonthpicker, :plugin => :a_common_libs %>
+<% end %>
