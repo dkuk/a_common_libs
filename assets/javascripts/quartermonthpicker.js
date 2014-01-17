@@ -270,10 +270,10 @@
         renderQuarter: function (year, quarter) {
             var firstDay = moment([year, 0, 1]).add('month', (quarter-1)*3);
 
-            var html = '<table class="qmp-quartal">'+
+            var html = '<table class="qmp-quarter">'+
                          '<tr>'+
-                           '<td rowspan="3" class="qmp-quartal-cell">'+
-                            '<div class="qmp-quartal-label qmp-daterange" data-start-date="'+firstDay.format('YYYY-MM-DD')+'" data-end-date="'+moment(firstDay).add('month', 2).endOf('month').format('YYYY-MM-DD')+'">'+
+                           '<td rowspan="3" class="qmp-quarter-cell">'+
+                            '<div class="qmp-quarter-label qmp-daterange" data-start-date="'+firstDay.format('YYYY-MM-DD')+'" data-end-date="'+moment(firstDay).add('month', 2).endOf('month').format('YYYY-MM-DD')+'">'+
                               '<span>'+this.locale.quarterNames[firstDay.quarter()-1]+'</span>'+
                             '</div>'+
                            '</td>'+

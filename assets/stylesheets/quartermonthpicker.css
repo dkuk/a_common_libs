@@ -81,7 +81,7 @@ input.qmp {
   padding: 2px 7px;
 }
 
-.qmp-quartal {
+.qmp-quarter {
   overflow: hidden;
   border: 0;
   border-spacing: 0;
@@ -119,13 +119,15 @@ input.qmp {
   border-bottom-left-radius: 3px;  
 }
 
-.qmp-quartal-label {
-  padding: 2px 5px;
-  min-width: 40px;
+.qmp-quarter-label {
+  padding: 2px 4px;
+  width: 3.4em;
   margin-right: 3px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.qmp-quartal-cell {
+.qmp-quarter-cell {
  overflow: hidden;
 }
 
