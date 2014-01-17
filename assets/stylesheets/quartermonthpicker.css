@@ -8,11 +8,6 @@ input.qmp {
   border-radius: 2px;
 }
 
-.qmp-range-edge {
-   background-color: #EF7F1A; 
-   /*border-radius: 2px;*/
-}
-
 .qmpicker {
   position: absolute;
   display: none;
@@ -30,8 +25,19 @@ input.qmp {
 }
 
 .qmp-daterange span{
-  color: #333;
-  border-bottom: 1px dotted #333;
+  color: #295200;
+  border-bottom: 1px dotted #295200;
+}
+
+.qmp-range-edge {
+  color: #FFF;
+  background-color: #EF7F1A; 
+   /*border-radius: 2px;*/
+}
+
+.qmp-range-edge span{
+  color: #FFF;
+  border-bottom: 1px dotted #FFF;
 }
 
 .next-year, .prev-year {
@@ -47,8 +53,8 @@ input.qmp {
 }
 
 .next-year, .prev-year span{
-  color: #333;
-  border-bottom: 1px dotted #333;
+  color: #295200;
+  border-bottom: 1px dotted #295200;
 }
 
 .qmp-year {
