@@ -3,11 +3,6 @@ input.qmp {
   padding-left: 24px !important;
 }
 
-.qmp-selected {
-  background-color: #eee;
-  border-radius: 2px;
-}
-
 .qmpicker {
   position: absolute;
   display: none;
@@ -27,6 +22,17 @@ input.qmp {
 .qmp-daterange span{
   color: #295200;
   border-bottom: 1px dotted #295200;
+}
+
+.qmp-selected {
+  color: #FFF;
+  background-color: #EF7F1A;
+  border-radius: 2px;
+}
+
+.qmp-selected span{
+  color: #FFF;
+  border-bottom: 1px dotted #FFF;
 }
 
 .qmp-range-edge {
@@ -94,20 +100,20 @@ input.qmp {
 }
 
 .qmp-first-mon {
-  border-left: 2px solid #999;
+  border-left: 1px solid #999;
   border-top-left-radius: 3px;  
 }
 
 .qmp-mid-mon {
-  border-left: 2px solid #999;
+  border-left: 1px solid #999;
   padding: 2px 1px; 
 }
 
 .qmp-mid-mon:before {
   content: '';
-  border: 2px solid #999;
+  border: 1px solid #999;
   margin-top: 9px;
-  margin-left: -6px;
+  margin-left: -4px;
   z-index: 1000001;
   float: left;
   border-top-left-radius: 3px;
@@ -115,7 +121,7 @@ input.qmp {
 }
 
 .qmp-last-mon {
-  border-left: 2px solid #999;
+  border-left: 1px solid #999;
   border-bottom-left-radius: 3px;  
 }
 

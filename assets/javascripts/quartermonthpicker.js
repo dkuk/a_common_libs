@@ -11,13 +11,15 @@
         this.year = moment().year();
 
         this.format = 'DD.MM.YYYY';
-        this.separator = ' - ';
+        this.separator = ' \u2014 '; // &mdash;
         this.selectCount = 2;
         this.hideDelay = 200;
+        this.closeAfter2Click = false;
         this.yearsBeforeAfter = 1;
 
         this.locale = {
             clearButton: 'Очистить',
+            closeButton: 'Закрыть',
             // monthNames: moment()._lang._monthsShort.slice(),
             monthNames: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
             quarterNames: ['I кв.','II кв.','III кв.','IV кв.']
@@ -95,7 +97,8 @@
             .on('click', '.prev-year', $.proxy(this.clickPrevYear, this))
             .on('click', '.next-year', $.proxy(this.clickNextYear, this))
             .on('click', '.qmp-daterange', $.proxy(this.clickDateRange, this))
-            .on('click', '.qmp-clear', $.proxy(this.clearRange, this));
+            .on('click', '.qmp-clear', $.proxy(this.clearRange, this))
+            .on('click', '.qmp-close', $.proxy(this.hide, this));
 
         this.element.prop('readonly', 'readonly');
         this.updateView();
@@ -192,11 +195,15 @@
             this.clearSelection();
             if (this.element.is('input'))
                 this.element.val('');
-            this.hide();
         },
 
         clickDateRange: function (e) {
-            var el = $(e.target).parent();
+            var el = $(e.target);
+            if (el.is('span'))
+                el = el.parent();
+            if (!el.is('div.qmp-daterange'))
+                return false;
+
             // get clicked dates
             // set new startDate and endDate
             var newStart = moment(el.attr('data-start-date'));
@@ -246,7 +253,7 @@
 
             this.updateInputText();
             this.updateSelection();
-            if (this.selectCount > 1){
+            if (this.selectCount > 1 && this.closeAfter2Click){
                 setTimeout($.proxy(this.hide, this), this.hideDelay);
             }
         },
@@ -332,7 +339,10 @@
                 pos = (i == -this.yearsBeforeAfter) ? 'first' : pos
                 html += this.renderYear(year+i,pos);
             }
-            html += '<div class="qmp-bottom"><input class="R qmp-clear" type=button value="'+this.locale.clearButton+'" /></div>';
+            html += '<div class="qmp-bottom">'+
+                       '<input class="R qmp-close" type=button value="'+this.locale.closeButton+'" />'+
+                       '<input class="R qmp-clear" type=button value="'+this.locale.clearButton+'" />'+
+                    '</div>';
             html += '</div>';
             return html;
         }
