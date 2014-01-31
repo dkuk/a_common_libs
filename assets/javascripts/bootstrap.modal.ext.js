@@ -90,11 +90,15 @@ $(document).ready(function(){
 
   $(document.body).on('click','[data-toggle=modal]', function() {
     var modal_w;
+    var m_body = '<div class="modal-body"></div>';
+    if (typeof $(this).attr('data-iframe') != 'undefined') {
+      var m_body = '<iframe class="modal-body modal-iframe" height="825px" frameborder="0" hspace="0" src="'+$(this).attr('href')+'" scrolling="auto"></iframe>';
+    }
     if ( typeof $(this).attr('data-target') == 'undefined' || $($(this).attr('data-target')).length < 1) {
       $('#bs-modal-dynamic').remove();
       var close_label = (typeof $(this).attr('data-close-label') != 'undefined') ? $(this).attr('data-close-label') : 'Close';
       $('<div id="bs-modal-dynamic" class="modal I fade" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1061;">'+
-           '<div class="modal-body"></div>'+
+          m_body+
            '<div class="modal-footer">'+
              '<button class="" data-dismiss="modal" aria-hidden="true" style="vertical-align: middle;">'+close_label+'</button>'+
            '</div>'+
@@ -122,7 +126,10 @@ $(document).ready(function(){
     if ( typeof $(this).attr('data-show-loader') != 'undefined' && typeof $(this).attr('href') != 'undefined') {
       modal_w.find('.modal-body').html('<div class="loader form_loader"></div>');
     }
-
+    if (typeof $(this).attr('data-iframe') != 'undefined') {
+      modal_w.modal('show');
+      return false;
+    }
   });
 
 });
