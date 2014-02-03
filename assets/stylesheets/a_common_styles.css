@@ -1,0 +1,20 @@
+.modal-iframe {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+div.tooltip-inner {
+  background-color: #F8F8CC;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+  color: #000;
+}
+
+.tooltip.right div.tooltip-arrow {
+  border-right-color: #F8F8CC;
+}
+
+div.tooltip.in {
+ opacity: 1;
+ filter: alpha(opacity=100);
+}
