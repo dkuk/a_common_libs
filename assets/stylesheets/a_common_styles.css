@@ -15,6 +15,11 @@ div.issue.tooltip {
  opacity: 1;
  filter: alpha(opacity=100);
  position: relative;
+ z-index: auto;
+}
+
+span.tip {
+  z-index: 2000;
 }
 
 
