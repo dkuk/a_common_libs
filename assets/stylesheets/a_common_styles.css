@@ -11,6 +11,12 @@ div.tooltip.in {
  filter: alpha(opacity=100);
 }
 
+div.issue.tooltip {
+ opacity: 1;
+ filter: alpha(opacity=100);
+ position: relative;
+}
+
 
 div.tooltip {
   font-size: 12px;
