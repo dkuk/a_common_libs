@@ -103,6 +103,7 @@ table.list td {
   display: block;
   width: 100%;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 /* ------ tooltip style walkaround ----*/
