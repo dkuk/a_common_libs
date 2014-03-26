@@ -12,7 +12,7 @@ input.qmp {
   background: #FFF;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset; 
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .qmp-daterange {
@@ -37,7 +37,7 @@ input.qmp {
 
 .qmp-range-edge {
   color: #FFF;
-  background-color: #EF7F1A; 
+  background-color: #EF7F1A;
    /*border-radius: 2px;*/
 }
 
@@ -96,17 +96,17 @@ input.qmp {
 
 .qmp-month {
   padding: 2px 5px;
-  min-width: 30px; 
+  min-width: 30px;
 }
 
 .qmp-first-mon {
   border-left: 1px solid #999;
-  border-top-left-radius: 3px;  
+  border-top-left-radius: 3px;
 }
 
 .qmp-mid-mon {
   border-left: 1px solid #999;
-  padding: 2px 1px; 
+  padding: 2px 1px;
 }
 
 .qmp-mid-mon:before {
@@ -122,7 +122,7 @@ input.qmp {
 
 .qmp-last-mon {
   border-left: 1px solid #999;
-  border-bottom-left-radius: 3px;  
+  border-bottom-left-radius: 3px;
 }
 
 .qmp-quarter-label {
@@ -131,6 +131,7 @@ input.qmp {
   margin-right: 3px;
   overflow: hidden;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 .qmp-quarter-cell {
