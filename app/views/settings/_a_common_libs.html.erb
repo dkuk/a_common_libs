@@ -28,3 +28,8 @@
   <%=check_box_tag 'settings[enable_qmpicker]', true, enable_qmpicker %> &mdash; <%=l(:settings_enable_qmpicker_lib) %>
 </label>
 </div>
+<div style="overflow: hidden">
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_javascript_patches]', true, @settings[:enable_javascript_patches] %> &mdash; <%=l(:settings_enable_javascript_patches) %>
+  </label>
+</div>

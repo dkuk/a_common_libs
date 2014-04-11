@@ -1,9 +1,9 @@
 # English strings go here for Rails i18n
 ru:
   settings_enable_select2_lib: "Select 2"
-  settings_enable_highcharts_lib: "Highcharts"  
+  settings_enable_highcharts_lib: "Highcharts"
   settings_enable_bootstrap_lib: "Twitter Bootstrap"
   settings_enable_bootstrap_lib_for_luxury_buttons: "только компоненты для плагина <a href='http://rmplus.pro/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a>"
   including_external_libraries: "Включение сторонних библиотек"
   settings_enable_qmpicker_lib: "Разрешить библиотеки QuarterMonthPicker и moment.js"
-
+  settings_enable_javascript_patches: "Включить javascript патчи"

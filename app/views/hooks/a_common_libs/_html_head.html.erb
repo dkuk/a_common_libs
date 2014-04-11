@@ -32,4 +32,7 @@
 <%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
 
 <%= javascript_include_tag 'utils.js', :plugin => :a_common_libs %>
-<%= javascript_include_tag 'patches.js', :plugin => :a_common_libs %>
+
+<% if settings[:enable_javascript_patches].nil? ? defaults[:enable_javascript_patches] : settings[:enable_javascript_patches] %>
+  <%= javascript_include_tag 'patches.js', :plugin => :a_common_libs %>
+<% end %>
