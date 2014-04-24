@@ -1,0 +1,32 @@
+div.settings p {
+  padding-left: 0 !important;
+}
+
+div.settings input[type="submit"] {
+  text-align: left !important;
+}
+
+.box.tabular.settings label{
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 0px !important;
+  font-weight: normal;
+  width: auto;
+  clear: left;
+  text-align: left;
+
+}
+
+div.settings fieldset {
+  clear: left;
+  margin-bottom: 8px;
+}
+
+div.settings label.for-checkbox {
+  display: block;
+  clear: left;
+}
+
+.settings-indent {
+  padding-left: 10px;
+}
