@@ -1,0 +1,69 @@
+.modal_window {
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  z-index: 100;
+  padding: 10px 10px 10px 10px;
+  margin: 0px 0px 0px 0px;
+  background: white;
+
+/*  font-size: 12px;
+  color: #484848;
+  font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;
+  font-variant: normal;
+  font-stretch: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-indent: 0px;
+  text-align: left;
+  text-shadow: none;
+  text-transform: none;
+  visibility: visible;
+  white-space: normal;
+  word-spacing: normal;
+  word-wrap: normal;*/
+
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.mw_frame {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+  overflow: visible;
+}
+
+#mw_content_load {
+  display: none;
+  z-index: 101;
+  position: absolute;
+  background: url(../images/mw_load.gif);
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  padding: 0px;
+  padding-left: 16px;
+  padding-top: 2px;
+}
+
+a.invisible_link{
+  visibility: hidden;
+  border: transparent;
+}
+
+a.invisible_link:hover{
+  visibility: hidden;
+  border: transparent;
+}
+
+a.invisible_link:link{
+  visibility: hidden;
+  border: transparent;
+}
+
+a.invisible_link:visited{
+  visibility: hidden;
+  border: transparent;
+}
