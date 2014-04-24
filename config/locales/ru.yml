@@ -7,3 +7,4 @@ ru:
   including_external_libraries: "Включение сторонних библиотек"
   settings_enable_qmpicker_lib: "Разрешить библиотеки QuarterMonthPicker и moment.js"
   settings_enable_javascript_patches: "Включить javascript патчи"
+  settings_enable_modal_windows: "Разрешить модальные окна (необходимо для плагинов KPI, LuxuryButtons)"
