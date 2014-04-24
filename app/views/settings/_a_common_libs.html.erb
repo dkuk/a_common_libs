@@ -1,30 +1,51 @@
-<% defaults = Redmine::Plugin::registered_plugins[:a_common_libs].settings[:default] %>
-<% enable_select2_lib = @settings['enable_select2_lib'] || defaults['enable_select2_lib'] %>
-<% enable_highcharts_lib = @settings['enable_highcharts_lib'] || defaults['enable_highcharts_lib'] %>
-<% enable_bootstrap_lib = @settings['enable_bootstrap_lib'].nil? ? defaults['enable_bootstrap_lib'] : @settings['enable_bootstrap_lib']  %>
-<% enable_bootstrap_lib_for_luxury_buttons = @settings['enable_bootstrap_lib_for_luxury_buttons'].nil? ? defaults['enable_bootstrap_lib_for_luxury_buttons'] : @settings['enable_bootstrap_lib_for_luxury_buttons'] %>
+<% enable_select2_lib = @settings['enable_select2_lib'] %>
+<% enable_highcharts_lib = @settings['enable_highcharts_lib'] %>
+<% enable_bootstrap_lib = @settings['enable_bootstrap_lib'] %>
+<% enable_bootstrap_lib_for_luxury_buttons = @settings['enable_bootstrap_lib_for_luxury_buttons'] %>
 <% enable_qmpicker = @settings['enable_qmpicker'] %>
+<% enable_modal_windows = @settings['enable_modal_windows'] %>
 
 <h3><%= l(:including_external_libraries) %></h3>
 
 <div style="overflow: hidden">
-<label style="margin-left: 0px; width: auto; font-weight: normal;"><%=check_box_tag 'settings[enable_select2_lib]', true, enable_select2_lib %> &mdash; <%= l(:settings_enable_select2_lib) %></label>
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_select2_lib]', true, enable_select2_lib %>
+    &mdash; <%= l(:settings_enable_select2_lib) %>
+  </label>
 </div>
 <div style="overflow: hidden">
-<label style="margin-left: 0px; width: auto; font-weight: normal;"><%=check_box_tag 'settings[enable_highcharts_lib]', true, enable_highcharts_lib %> &mdash; <%=l(:settings_enable_highcharts_lib) %></label>
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_highcharts_lib]', true, enable_highcharts_lib %>
+    &mdash; <%=l(:settings_enable_highcharts_lib) %>
+  </label>
 </div>
 <div style="overflow: hidden">
-<label style="margin-left: 0px; width: auto; font-weight: normal;">
-  <%=check_box_tag 'settings[enable_bootstrap_lib]', true, enable_bootstrap_lib %> &mdash; <%=l(:settings_enable_bootstrap_lib) %>
-</label>
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_bootstrap_lib]', true, enable_bootstrap_lib %>
+    &mdash; <%=l(:settings_enable_bootstrap_lib) %>
+  </label>
 </div>
 <div style="overflow: hidden">
-<label style="margin-left: 0px; width: auto; font-weight: normal; padding-left: 40px;">
-  <%=check_box_tag 'settings[enable_bootstrap_lib_for_luxury_buttons]', true, enable_bootstrap_lib_for_luxury_buttons %> &mdash; <%=l(:settings_enable_bootstrap_lib_for_luxury_buttons).html_safe %>
-</label>
+  <label style="margin-left: 0px; width: auto; font-weight: normal; padding-left: 40px;">
+    <%=check_box_tag 'settings[enable_bootstrap_lib_for_luxury_buttons]', true, enable_bootstrap_lib_for_luxury_buttons %>
+    &mdash; <%=l(:settings_enable_bootstrap_lib_for_luxury_buttons).  html_safe %>
+  </label>
 </div>
 <div style="overflow: hidden">
-<label style="margin-left: 0px; width: auto; font-weight: normal;">
-  <%=check_box_tag 'settings[enable_qmpicker]', true, enable_qmpicker %> &mdash; <%=l(:settings_enable_qmpicker_lib) %>
-</label>
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_qmpicker]', true, enable_qmpicker %>
+    &mdash; <%=l(:settings_enable_qmpicker_lib) %>
+  </label>
+</div>
+<div style="overflow: hidden">
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_javascript_patches]', true, @settings[:enable_javascript_patches] %>
+    &mdash; <%=l(:settings_enable_javascript_patches) %>
+  </label>
+</div>
+<div style="overflow: hidden">
+  <label style="margin-left: 0px; width: auto; font-weight: normal;">
+    <%=check_box_tag 'settings[enable_modal_windows]', true, enable_modal_windows %>
+    &mdash; <%=l(:settings_enable_modal_windows).html_safe %>
+  </label>
 </div>

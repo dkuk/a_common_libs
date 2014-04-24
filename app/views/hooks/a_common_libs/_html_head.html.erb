@@ -1,32 +1,42 @@
-<% defaults = Redmine::Plugin::registered_plugins[:a_common_libs].settings[:default] %>
 <% settings = Setting.plugin_a_common_libs %>
 
-<% if settings['enable_bootstrap_lib'].nil? ? defaults['enable_bootstrap_lib'] : settings['enable_bootstrap_lib'] %>
+<% if settings['enable_bootstrap_lib'] %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :plugin => :a_common_libs %>
   <%= javascript_include_tag 'bootstrap.min.js', :plugin => :a_common_libs %>
   <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
 <% else %>
-  <% if settings['enable_bootstrap_lib_for_luxury_buttons'].nil? ? defaults['enable_bootstrap_lib_for_luxury_buttons'] : settings['enable_bootstrap_lib_for_luxury_buttons'] %>
+  <% if settings['enable_bootstrap_lib_for_luxury_buttons'] %>
     <%= javascript_include_tag 'bootstrap.luxury_buttons.min.js', :plugin => :a_common_libs %>
     <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
     <%= stylesheet_link_tag 'bootstrap.luxury_buttons.min.css', :plugin => :a_common_libs %>
   <% end %>
 <% end %>
 
-<% if settings['enable_highcharts_lib'].nil? ? defaults['enable_highcharts_lib'] : settings['enable_highcharts_lib'] %>
+<% if settings['enable_highcharts_lib'] %>
   <%= javascript_include_tag 'highcharts.js', :plugin => :a_common_libs %>
 <% end %>
 
-<% if settings['enable_select2_lib'].nil? ? defaults['enable_select2_lib'] : settings['enable_select2_lib'] %>
+<% if settings['enable_select2_lib'] %>
   <%= javascript_include_tag 'select2', :plugin => :a_common_libs %>
   <%= stylesheet_link_tag :select2, :plugin => :a_common_libs %>
   <%= javascript_include_tag :a_common_libs, :plugin => :a_common_libs %>
 <% end %>
 
-<% if settings['enable_qmpicker'].nil? ? defaults['enable_qmpicker'] : settings['enable_qmpicker'] %>
+<% if settings['enable_qmpicker'] %>
   <%= javascript_include_tag 'moment.js', :plugin => :a_common_libs %>
   <%= stylesheet_link_tag :quartermonthpicker, :plugin => :a_common_libs %>
   <%= javascript_include_tag :quartermonthpicker, :plugin => :a_common_libs %>
 <% end %>
 
 <%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
+
+<%= javascript_include_tag 'utils.js', :plugin => :a_common_libs %>
+
+<% if settings['enable_javascript_patches'] %>
+  <%= javascript_include_tag 'patches.js', :plugin => :a_common_libs %>
+<% end %>
+
+<% if settings['enable_modal_windows'] %>
+  <%= javascript_include_tag :modal_windows, :plugin => :a_common_libs %>
+  <%= stylesheet_link_tag :modal_windows, :plugin => :a_common_libs %>
+<% end %>
