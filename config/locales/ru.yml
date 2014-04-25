@@ -8,3 +8,4 @@ ru:
   settings_enable_qmpicker_lib: "Разрешить библиотеки QuarterMonthPicker и moment.js"
   settings_enable_javascript_patches: "Включить javascript патчи"
   settings_enable_modal_windows: "Разрешить модальные окна (необходимо для плагинов KPI, LuxuryButtons)"
+  settings_enable_jquery_cookies: "Включить плагин jQuery Cookie"
