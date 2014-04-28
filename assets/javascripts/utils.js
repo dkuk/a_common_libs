@@ -5,8 +5,9 @@ Array.prototype.contains = function(element){
 
 // Namespace declaration
 var RMPlus = (function (my) {
+  var my = my || {};
   return my;
-}(RMPlus || {}));
+})(RMPlus || {});
 
 // Useful utility functions
 RMPlus.Utils = (function(my) {
