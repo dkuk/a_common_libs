@@ -3,6 +3,32 @@ Array.prototype.contains = function(element){
     return this.indexOf(element) > -1;
 };
 
+// usage:
+// var visible = TabIsVisible(); // gives current state
+// TabIsVisible(function(){ // registers a handler for visibility changes
+//  document.title = vis() ? 'Visible' : 'Not visible';
+// });
+var TabIsVisible = (function(){
+    var stateKey,
+        eventKey,
+        keys = {
+                hidden: "visibilitychange",
+                webkitHidden: "webkitvisibilitychange",
+                mozHidden: "mozvisibilitychange",
+                msHidden: "msvisibilitychange"
+    };
+    for (stateKey in keys) {
+        if (stateKey in document) {
+            eventKey = keys[stateKey];
+            break;
+        }
+    }
+    return function(c) {
+        if (c) document.addEventListener(eventKey, c);
+        return !document[stateKey];
+    }
+})();
+
 // Namespace declaration
 var RMPlus = (function (my) {
   var my = my || {};
