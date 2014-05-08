@@ -1,10 +1,13 @@
-<% enable_select2_lib = @settings['enable_select2_lib'] %>
-<% enable_highcharts_lib = @settings['enable_highcharts_lib'] %>
-<% enable_bootstrap_lib = @settings['enable_bootstrap_lib'] %>
-<% enable_bootstrap_lib_for_luxury_buttons = @settings['enable_bootstrap_lib_for_luxury_buttons'] %>
-<% enable_qmpicker = @settings['enable_qmpicker'] %>
-<% enable_modal_windows = @settings['enable_modal_windows'] %>
-<% enable_jquery_cookies = @settings['enable_jquery_cookies'] %>
+<%
+  settings ||= { }
+  enable_select2_lib = settings['enable_select2_lib']
+  enable_highcharts_lib = settings['enable_highcharts_lib']
+  enable_bootstrap_lib = settings['enable_bootstrap_lib']
+  enable_bootstrap_lib_for_luxury_buttons = settings['enable_bootstrap_lib_for_luxury_buttons']
+  enable_qmpicker = settings['enable_qmpicker']
+  enable_modal_windows = settings['enable_modal_windows']
+  enable_jquery_cookies = settings['enable_jquery_cookies']
+%>
 <h3><%= l(:including_external_libraries) %></h3>
 
 <div style="overflow: hidden">
