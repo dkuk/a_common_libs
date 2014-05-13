@@ -42,6 +42,7 @@ Rails.application.config.to_prepare do
               FileUtils.remove_entry(target, true)
             end
           end
+          Rails.logger.debug "Starting assets listener for plugin #{name}"
           assets_listener.start
           $listeners << assets_listener
         end
