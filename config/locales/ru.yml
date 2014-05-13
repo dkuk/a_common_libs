@@ -9,3 +9,4 @@ ru:
   settings_enable_javascript_patches: "Включить javascript патчи"
   settings_enable_modal_windows: "Разрешить модальные окна (необходимо для плагинов KPI, LuxuryButtons)"
   settings_enable_jquery_cookies: "Включить плагин jQuery Cookie"
+  settings_enable_assets_listeners: "Включить синхронизацию javascript и css файлов на лету (для разработчиков, работает только в режиме development)"

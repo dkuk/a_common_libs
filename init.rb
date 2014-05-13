@@ -14,39 +14,42 @@ Rails.application.config.to_prepare do
   ApplicationHelper.send(:include, ACommonLibs::ApplicationHelperPatch)
 
   if Rails.env.development?
-    $listeners = []
-    Rails.logger.debug "Init Listeners..."
-    Redmine::Plugin.registered_plugins.each do |name, plugin|
-      source = plugin.assets_directory
-      if File.exist?(source) && File.directory?(source)
-        destination = plugin.public_directory
-        assets_listener = Listen.to source do |modified, added, removed|
-          modified.each do |modified_path|
-            if File.file?(modified_path)
-              target = File.join(destination, modified_path.gsub(source, ''))
-              FileUtils.cp(modified_path, target)
+    enable_assets_listeners = Setting.plugin_a_common_libs[:enable_assets_listeners]
+    if enable_assets_listeners
+      $listeners = []
+      Rails.logger.debug "Init Listeners..."
+      Redmine::Plugin.registered_plugins.each do |name, plugin|
+        source = plugin.assets_directory
+        if File.exist?(source) && File.directory?(source)
+          destination = plugin.public_directory
+          assets_listener = Listen.to source do |modified, added, removed|
+            modified.each do |modified_path|
+              if File.file?(modified_path)
+                target = File.join(destination, modified_path.gsub(source, ''))
+                FileUtils.cp(modified_path, target)
+              end
+            end
+            added.each do |added_path|
+              if File.directory?(added_path)
+                FileUtils.mkdir_p(added_path)
+              elsif File.file?(added_path)
+                target = File.join(destination, added_path.gsub(source, ''))
+                FileUtils.cp(added_path, target)
+              end
+            end
+            removed.each do |removed_path|
+              target = File.join(destination, removed_path.gsub(source, ''))
+              FileUtils.remove_entry(target, true)
             end
           end
-          added.each do |added_path|
-            if File.directory?(added_path)
-              FileUtils.mkdir_p(added_path)
-            elsif File.file?(added_path)
-              target = File.join(destination, added_path.gsub(source, ''))
-              FileUtils.cp(added_path, target)
-            end
-          end
-          removed.each do |removed_path|
-            target = File.join(destination, removed_path.gsub(source, ''))
-            FileUtils.remove_entry(target, true)
-          end
+          assets_listener.start
+          $listeners << assets_listener
         end
-        assets_listener.start
-        $listeners << assets_listener
       end
-    end
-    at_exit do
-      Rails.logger.debug "Stopping listeners..."
-      $listeners.each{ |listener| listener.stop }
+      at_exit do
+        Rails.logger.debug "Stopping listeners..."
+        $listeners.each{ |listener| listener.stop }
+      end
     end
   end
 end
