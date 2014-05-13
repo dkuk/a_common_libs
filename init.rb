@@ -9,15 +9,12 @@ Redmine::Plugin.register :a_common_libs do
   settings :partial => 'settings/a_common_libs'
 end
 
-Rails.application.config.to_prepare do
-  # ApplicationController.send(:include, ACommonLibs::ApplicationControllerPatch)
-  ApplicationHelper.send(:include, ACommonLibs::ApplicationHelperPatch)
-
+Rails.application.config.after_initialize do
   if Rails.env.development?
     enable_assets_listeners = Setting.plugin_a_common_libs[:enable_assets_listeners]
     if enable_assets_listeners
       $listeners = []
-      Rails.logger.debug "Init Listeners..."
+      Rails.logger.debug "Initializing listeners..."
       Redmine::Plugin.registered_plugins.each do |name, plugin|
         source = plugin.assets_directory
         if File.exist?(source) && File.directory?(source)
@@ -53,6 +50,11 @@ Rails.application.config.to_prepare do
       end
     end
   end
+end
+
+Rails.application.config.to_prepare do
+  # ApplicationController.send(:include, ACommonLibs::ApplicationControllerPatch)
+  ApplicationHelper.send(:include, ACommonLibs::ApplicationHelperPatch)
 end
 
 require 'a_common_libs/view_hooks'
