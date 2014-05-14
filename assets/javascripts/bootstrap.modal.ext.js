@@ -69,6 +69,8 @@ function resize_bs_modal(obj){
 
 $(document).ready(function(){
 
+  $('.modal').prependTo(document.body);
+
   $(document.body).on('show', '.modal', function () {
     resize_bs_modal(this);
   });
