@@ -49,10 +49,3 @@
     &mdash; <%=l(:settings_enable_modal_windows).html_safe %>
   </label>
 </div>
-<% if Rails.env.development? %>
-  <div style="overflow: hidden">
-    <label style="margin-left: 0px; width: auto; font-weight: normal;">
-      <%= check_box_tag 'settings[enable_assets_listeners]', true, @settings[:enable_assets_listeners] %> &mdash; <%= l(:settings_enable_assets_listeners) %>
-    </label>
-  </div>
-<% end %>
