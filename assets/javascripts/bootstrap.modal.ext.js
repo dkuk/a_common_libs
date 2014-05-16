@@ -96,8 +96,9 @@ $(document).ready(function(){
     if (typeof $(this).attr('data-iframe') != 'undefined') {
       var m_body = '<iframe class="modal-body modal-iframe" height="825px" frameborder="0" hspace="0" src="'+$(this).attr('href')+'" scrolling="auto"></iframe>';
     }
+    $('#bs-modal-dynamic').modal('hide');
     if ( typeof $(this).attr('data-target') == 'undefined' || $($(this).attr('data-target')).length < 1) {
-      $('#bs-modal-dynamic').remove();
+      // $('#bs-modal-dynamic').remove();
       var close_label = (typeof $(this).attr('data-close-label') != 'undefined') ? $(this).attr('data-close-label') : 'Close';
       $('<div id="bs-modal-dynamic" class="modal I fade" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1061;">'+
           m_body+

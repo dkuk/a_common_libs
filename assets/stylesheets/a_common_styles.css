@@ -145,3 +145,50 @@ div.tooltip-inner {
 }
 
 /* ------ tooltip style walkaround ends ----*/
+
+
+/* ---- Redmine tabs fix. Not only in content ---- */
+
+.tabs {height: 2.6em; margin-bottom:1.2em; position:relative; overflow:hidden;}
+
+.tabs ul {margin:0; position:absolute; bottom:0; padding-left:0.5em; width: 2000px; border-bottom: 1px solid #bbbbbb;}
+
+.tabs ul li {
+  float:left;
+  list-style-type:none;
+  white-space:nowrap;
+  margin-right:4px;
+  background:#fff;
+  position:relative;
+  margin-bottom:-1px;
+}
+
+.tabs ul li a{
+  display:block;
+  font-size: 0.9em;
+  text-decoration:none;
+  line-height:1.3em;
+  padding:4px 6px 4px 6px;
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbbbbb;
+  background-color: #f6f6f6;
+  color:#999;
+  font-weight:bold;
+  border-top-left-radius:3px;
+  border-top-right-radius:3px;
+}
+
+.tabs ul li a:hover {
+  background-color: #ffffdd;
+  text-decoration:none;
+}
+
+.tabs ul li a.selected {
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+  border-bottom: 1px solid #fff;
+  color:#444;
+}
+
+.tabs ul li a.selected:hover {background-color: #fff;}
+/* ---- Redmine tabs fix ends ---- */
