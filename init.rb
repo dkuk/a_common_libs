@@ -10,7 +10,6 @@ Redmine::Plugin.register :a_common_libs do
 end
 
 Rails.application.config.to_prepare do
-  # ApplicationController.send(:include, ACommonLibs::ApplicationControllerPatch)
   ApplicationHelper.send(:include, ACommonLibs::ApplicationHelperPatch)
 end
 

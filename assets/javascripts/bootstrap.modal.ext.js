@@ -1,5 +1,5 @@
 
-function resize_bs_modal(obj){
+function resize_bs_modal (obj) {
   /* handle width */
   var w_width = $(window).width();
   var w_height = $(window).height();
@@ -73,6 +73,10 @@ $(document).ready(function(){
 
   $(document.body).on('show', '.modal', function () {
     resize_bs_modal(this);
+  });
+
+  $(document.body).on('hide', '.modal', function () {
+    $('a:focus').blur();
   });
 
   $(document.body).on('ajaxstop', '.modal-body', function () {
