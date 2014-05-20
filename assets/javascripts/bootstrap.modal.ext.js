@@ -67,7 +67,7 @@ function resize_bs_modal (obj) {
   }
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
 
   $('.modal').prependTo(document.body);
 
@@ -92,6 +92,19 @@ $(document).ready(function(){
   $(document.body).on('hide', '.modal', function () {
     if (this.id == 'bs-modal-dynamic')
       $(this).remove();
+  });
+
+  $(document.body).on('click', '.bs-ajax-form', function () {
+    var form_div = $('#'+$(this).attr('data-target'));
+    if (form_div.length > 0) {
+      form_div.html('<div class="loader form_loader"></div>');
+      form_div.modal('show');
+      form_div.load(this.href, function () {
+          $('.tabs-buttons').hide();
+          resize_bs_modal(form_div);
+      });
+    }
+    return false;
   });
 
   $(document.body).on('click','[data-toggle=modal]', function() {
