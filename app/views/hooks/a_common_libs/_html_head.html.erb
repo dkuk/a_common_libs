@@ -40,3 +40,14 @@
   <%= javascript_include_tag :modal_windows, :plugin => :a_common_libs %>
   <%= stylesheet_link_tag :modal_windows, :plugin => :a_common_libs %>
 <% end %>
+
+<script>
+//<![CDATA[
+  RMPlus.Utils = (function(my){
+    var my = my || {};
+
+    my.ajax_placeholder = '<%= l(:ajax_placeholder) %>';
+
+    return my;
+  })(RMPlus.Utils || {});
+//]]>

@@ -3,6 +3,12 @@ Array.prototype.contains = function(element){
     return this.indexOf(element) > -1;
 };
 
+if (('isArray' in Array) === false){
+  Array.prototype.isArray = function() {
+    return Object.prototype.toString.call(this) === '[object Array]';
+  }
+}
+
 // usage:
 // var visible = TabIsVisible(); // gives current state
 // TabIsVisible(function(){ // registers a handler for visibility changes
@@ -90,16 +96,16 @@ RMPlus.Utils = (function(my) {
 
   // Function makes select2 combobox out of text field
   // Accepts jquery selector and init data (as a js array)
-  my.makeSelect2Combobox = function(selector, init_data){
+  my.makeSelect2MultiCombobox = function(selector, init_data){
     var $selector = $(selector);
     // add combobox flag, if not already present
-    if ($selector.attr('data-combobox') !== "true") {
-      $selector.attr('data-combobox', 'true');
+    if ($selector.attr('data-multicombobox') !== "true") {
+      $selector.attr('data-multicombobox', 'true');
     }
 
     init_data = init_data || $selector.val();
 
-    if( Object.prototype.toString.call(init_data) === '[object String]' ) {
+    if (Object.prototype.toString.call(init_data) === '[object String]') {
       if (init_data.length > 0){
         init_data = init_data.split(',');
       }
@@ -137,12 +143,11 @@ RMPlus.Utils = (function(my) {
   // This function catches all such inputs marked with 'data-combobox' flag, and replaces them with selects with options
   // so that arrays will be sent the right way.
   my.modifyFormForComboboxes = function(event){
-    //event.preventDefault();
     var $form = $(this);
     var form = this;
 
     $form.find('input[type="text"]').each(function(index){
-      if ($(this).attr('data-combobox') === "true"){
+      if ($(this).attr('data-multicombobox') === "true"){
         var value = $(this).val();
         var valuesArray = value.split(',');
         var name = this.name;
@@ -156,11 +161,105 @@ RMPlus.Utils = (function(my) {
           $option.val(valuesArray[i]);
           $option.appendTo($select);
         }
-
         $(form).append($select);
       }
     });
     return true;
+  };
+
+  my.makeSelect2Combobox = function(selector){
+    var $selector = $(selector);
+
+    var get_url = selector.getAttribute('data-get-url') || '';
+    var post_url = selector.getAttribute('data-post-url') || '';
+    var placeholder = RMPlus.Utils.ajax_placeholder || 'Please, enter the data';
+    var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 0;
+
+    var data_select2 = [];
+    //$(selector)
+    // $.ajax({url: get_url,
+    //         type: 'get',
+    //         dataType: 'json',
+    //         data: {},
+    //         success: function(data){
+    //           if data.isArray() {
+    //             for (var i = 0, len = data.length; i < len; i++){
+
+    //             }
+    //           }
+    //           else if (Object.prototype.toString.call(data) === '[object Object]'){
+
+    //           }
+    //         },
+    //         fail: function(jqXHR, textStatus, error){
+
+    //         }
+    //       });
+    //for (var i = 0, len = init_data.length; i < len; i++){
+    //  data_select2[i] = {id: init_data[i], text: init_data[i]};
+    //}
+
+    $selector.select2({ width: '400px',
+                        placeholder: placeholder,
+                        allowClear: true,
+                        minimumInputLength: min_search_length,
+                        query: function (query) {
+                          var data = {}, found = false, text, term;
+                          data.results = [];
+                          if (query.term) {
+                            for (var i = 0, len = choices.length; i < len; i++) {
+                              text = choices[i].text.toLocaleUpperCase();
+                              term = query.term.toLocaleUpperCase();
+                              if (text.localeCompare(term) === 0) {
+                                found = true;
+                                break;
+                              }
+                            }
+                            if (!found){
+                              data.results.push({ id: query.term, text: query.term });
+                              // $.ajax({
+                              //   url: post_url,
+                              //   dataType: 'json',
+                              //   data: {},
+                              //   success: function(ajax_data){
+                              //     data.results.push({ id: query.term, text: query.term });
+                              //   },
+                              //   fail: function(jqXHR, textStatus, error){
+
+                              //   },
+                              //   complete: function(jqXHR, textStatus){
+
+                              //   }
+                              // });
+                            }
+                          }
+                          for (var i = 0, len = choices.length; i < len; i++) {
+                            text = Select2.util.stripDiacritics(choices[i].text).toUpperCase();
+                            term = Select2.util.stripDiacritics(query.term).toUpperCase();
+                            if (text.indexOf(term) >= 0) {
+                              data.results.push(choices[i]);
+                            }
+                          }
+                          query.callback(data);
+                        }
+                     })
+    .on("change", function() {
+      var result = $selector.select2('val'),
+          found = false;
+
+      if (!result) return;
+
+      for (var i = 0, len = choices.length; i < len; i++) {
+        if (choices[i].id.localeCompare(result) === 0) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        choices.splice(0, 0, {id: result, text: result});
+        //choices.push({id: result, text: result});
+      }
+    });
   };
 
   return my;
