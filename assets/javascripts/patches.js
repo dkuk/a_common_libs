@@ -16,7 +16,7 @@
     var $par_ul = $tab.parents('div.tabs').first();
     $par_ul.find('li a').each(function (index) {
       $(this).removeClass('selected');
-      var tab_name = $(this).attr('id').split('-')[1];
+      var tab_name = $(this).attr('id').split('tab-')[1];
       console.log(tab_name)
       $('#tab-content-' + tab_name).hide();
     });
@@ -24,9 +24,9 @@
     $tab.addClass('selected');
     //replaces current URL with the "href" attribute of the current link
     //(only triggered if supported by browser)
-    if ('replaceState' in window.history) {
-      window.history.replaceState(null, document.title, url);
-    }
+    // if ('replaceState' in window.history) {
+    //   window.history.replaceState(null, document.title, url);
+    // }
     return false;
   }
 
@@ -53,3 +53,14 @@
     }));
   };
 })();
+
+$(document).ready(function () {
+  $('.tabs a').click(function () {
+    var url = $(this).attr('href').split('?tab=');
+    var loc = location.href.split('#');
+    location.href = loc[0] + '#' + url[1];
+    if ('replaceState' in window.history) {
+      window.history.replaceState(null, document.title, location.href);
+    }
+  });
+})
