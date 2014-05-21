@@ -9,7 +9,9 @@ $(document).ready(function(){
     }
   });
   $('input[type="hidden"]').each(function(){
-    RMPlus.Utils.makeSelect2Combobox(this);
+    if (this.getAttribute('data-combobox') === 'true'){
+      RMPlus.Utils.makeSelect2Combobox(this);
+    }
   });
 
 });
