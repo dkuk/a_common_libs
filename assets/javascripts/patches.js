@@ -58,7 +58,11 @@ $(document).ready(function () {
   $('.tabs a').click(function () {
     var url = $(this).attr('href').split('?tab=');
     var loc = location.href.split('#');
-    location.href = loc[0] + '#' + url[1];
+    if(loc[0].indexOf('?') == -1){
+      location.href = loc[0] + '?tab=' + url[1].split('&')[0];
+    } else {
+      location.href = loc[0] + '&tab=' + url[1].split('&')[0];
+    }
     if ('replaceState' in window.history) {
       window.history.replaceState(null, document.title, location.href);
     }
