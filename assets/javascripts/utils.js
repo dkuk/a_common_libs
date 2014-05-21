@@ -173,7 +173,7 @@ RMPlus.Utils = (function(my) {
     var get_url = selector.getAttribute('data-get-url') || '';
     var post_url = selector.getAttribute('data-post-url') || '';
     var placeholder = RMPlus.Utils.ajax_placeholder || 'Please, enter the data';
-    var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 0;
+    var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 1;
 
     var data_select2 = [];
     //$(selector)
@@ -198,6 +198,8 @@ RMPlus.Utils = (function(my) {
     //for (var i = 0, len = init_data.length; i < len; i++){
     //  data_select2[i] = {id: init_data[i], text: init_data[i]};
     //}
+
+    var choices = [{ id: "1", text: "žluťoučký"}, {id: "2", text: "kůň"}, {id: "3", text: "foo"}, {id: "4", text: "BAR" }];
 
     $selector.select2({ width: '400px',
                         placeholder: placeholder,
