@@ -1,4 +1,4 @@
-<% settings = Setting.plugin_a_common_libs %>
+<% settings = Setting.plugin_a_common_libs || { } %>
 
 <% if settings['enable_bootstrap_lib'] %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :plugin => :a_common_libs %>

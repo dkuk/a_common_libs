@@ -1,5 +1,5 @@
 
-function resize_bs_modal(obj){
+function resize_bs_modal (obj) {
   /* handle width */
   var w_width = $(window).width();
   var w_height = $(window).height();
@@ -67,10 +67,16 @@ function resize_bs_modal(obj){
   }
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
+
+  $('.modal').prependTo(document.body);
 
   $(document.body).on('show', '.modal', function () {
     resize_bs_modal(this);
+  });
+
+  $(document.body).on('hide', '.modal', function () {
+    $('a:focus').blur();
   });
 
   $(document.body).on('ajaxstop', '.modal-body', function () {
@@ -88,14 +94,28 @@ $(document).ready(function(){
       $(this).remove();
   });
 
+  $(document.body).on('click', '.bs-ajax-form', function () {
+    var form_div = $('#'+$(this).attr('data-target'));
+    if (form_div.length > 0) {
+      form_div.html('<div class="loader form_loader"></div>');
+      form_div.modal('show');
+      form_div.load(this.href, function () {
+          $('.tabs-buttons').hide();
+          resize_bs_modal(form_div);
+      });
+    }
+    return false;
+  });
+
   $(document.body).on('click','[data-toggle=modal]', function() {
     var modal_w;
     var m_body = '<div class="modal-body"></div>';
     if (typeof $(this).attr('data-iframe') != 'undefined') {
       var m_body = '<iframe class="modal-body modal-iframe" height="825px" frameborder="0" hspace="0" src="'+$(this).attr('href')+'" scrolling="auto"></iframe>';
     }
+    $('#bs-modal-dynamic').modal('hide');
     if ( typeof $(this).attr('data-target') == 'undefined' || $($(this).attr('data-target')).length < 1) {
-      $('#bs-modal-dynamic').remove();
+      // $('#bs-modal-dynamic').remove();
       var close_label = (typeof $(this).attr('data-close-label') != 'undefined') ? $(this).attr('data-close-label') : 'Close';
       $('<div id="bs-modal-dynamic" class="modal I fade" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1061;">'+
           m_body+

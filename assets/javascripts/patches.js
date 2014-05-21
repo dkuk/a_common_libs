@@ -9,7 +9,28 @@
 (function(){
 
   // store original reference to the method, may be useful for future refactoring
-  var _old = observeSearchfield;
+  var showTab_without_patches  = showTab;
+
+  showTab = function (name, url) {
+    var $tab = $('#tab-' + name);
+    var $par_ul = $tab.parents('div.tabs').first();
+    $par_ul.find('li a').each(function (index) {
+      $(this).removeClass('selected');
+      var tab_name = $(this).attr('id').split('-')[1];
+      console.log(tab_name)
+      $('#tab-content-' + tab_name).hide();
+    });
+    $('#tab-content-' + name).show();
+    $tab.addClass('selected');
+    //replaces current URL with the "href" attribute of the current link
+    //(only triggered if supported by browser)
+    if ('replaceState' in window.history) {
+      window.history.replaceState(null, document.title, url);
+    }
+    return false;
+  }
+
+  var observeSearchfield_without_patches = observeSearchfield;
 
   observeSearchfield = function(fieldId, targetId, url){
     $('body').on('keyup click mousemove', '#' + fieldId, RMPlus.Utils.debounce(300, function(){
