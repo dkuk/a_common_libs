@@ -10,3 +10,5 @@ en:
   settings_enable_modal_windows: "Enable tiny modals (required for KPI, LuxuryButtons plugins)"
   settings_enable_jquery_cookies: "Enable Jquery Cookie plugin"
   ajax_placeholder: "Please, enter or select data"
+  combobox_error: "Server error, please try again later"
+  combobox_404: "404 error, URL not found"

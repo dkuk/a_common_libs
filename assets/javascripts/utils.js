@@ -3,11 +3,20 @@ Array.prototype.contains = function(element){
     return this.indexOf(element) > -1;
 };
 
-if (('isArray' in Array) === false){
-  Array.prototype.isArray = function() {
-    return Object.prototype.toString.call(this) === '[object Array]';
-  }
-}
+// jQuery plugin to change the type of the html element easily
+(function($) {
+    $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+            attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+            return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+    }
+})(jQuery);
 
 // usage:
 // var visible = TabIsVisible(); // gives current state
@@ -168,102 +177,124 @@ RMPlus.Utils = (function(my) {
   };
 
   my.makeSelect2Combobox = function(selector){
-    var $selector = $(selector);
-
+    var $form = $(selector.form);
     var get_url = selector.getAttribute('data-get-url') || '';
     var post_url = selector.getAttribute('data-post-url') || '';
-    var placeholder = RMPlus.Utils.ajax_placeholder || 'Please, enter the data';
-    var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 1;
+    var model_attribute = selector.getAttribute('data-model-attribute') || 'name';
+
+    var placeholder = RMPlus.Utils.combobox_placeholder;
+    var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 0;
 
     var data_select2 = [];
-    //$(selector)
-    // $.ajax({url: get_url,
-    //         type: 'get',
-    //         dataType: 'json',
-    //         data: {},
-    //         success: function(data){
-    //           if data.isArray() {
-    //             for (var i = 0, len = data.length; i < len; i++){
+    // if (selector.tagName.toLowerCase() === 'select'){
+    //   var $selector = $(selector);
+    //   $.each($selector.children(), function(){
+    //     data_select2.push({id: this.value, text: this.innerText });
+    //   });
+    //   $selector.children().remove();
+    //   $selector.changeElementType('input');
 
-    //             }
-    //           }
-    //           else if (Object.prototype.toString.call(data) === '[object Object]'){
-
-    //           }
-    //         },
-    //         fail: function(jqXHR, textStatus, error){
-
-    //         }
-    //       });
-    //for (var i = 0, len = init_data.length; i < len; i++){
-    //  data_select2[i] = {id: init_data[i], text: init_data[i]};
-    //}
-
-    var choices = [{ id: "1", text: "žluťoučký"}, {id: "2", text: "kůň"}, {id: "3", text: "foo"}, {id: "4", text: "BAR" }];
+    //   selector = document.getElementById(selector.id);
+    // }
+    var $selector = $(selector);
 
     $selector.select2({ width: '400px',
                         placeholder: placeholder,
                         allowClear: true,
                         minimumInputLength: min_search_length,
-                        query: function (query) {
-                          var data = {}, found = false, text, term;
-                          data.results = [];
-                          if (query.term) {
-                            for (var i = 0, len = choices.length; i < len; i++) {
-                              text = choices[i].text.toLocaleUpperCase();
-                              term = query.term.toLocaleUpperCase();
-                              if (text.localeCompare(term) === 0) {
-                                found = true;
-                                break;
-                              }
-                            }
-                            if (!found){
-                              data.results.push({ id: query.term, text: query.term });
-                              // $.ajax({
-                              //   url: post_url,
-                              //   dataType: 'json',
-                              //   data: {},
-                              //   success: function(ajax_data){
-                              //     data.results.push({ id: query.term, text: query.term });
-                              //   },
-                              //   fail: function(jqXHR, textStatus, error){
-
-                              //   },
-                              //   complete: function(jqXHR, textStatus){
-
-                              //   }
-                              // });
-                            }
-                          }
-                          for (var i = 0, len = choices.length; i < len; i++) {
-                            text = Select2.util.stripDiacritics(choices[i].text).toUpperCase();
-                            term = Select2.util.stripDiacritics(query.term).toUpperCase();
-                            if (text.indexOf(term) >= 0) {
-                              data.results.push(choices[i]);
-                            }
-                          }
-                          query.callback(data);
-                        }
+                        containerCssClass: 'hint--error hint--top hint--rounded',
+                        // query: function (query) {
+                        //   var data = {}, found = false, text, term;
+                        //   data.results = [];
+                        //   if (query.term) {
+                        //     for (var i = 0, len = data_select2.length; i < len; i++) {
+                        //       text = data_select2[i].text.toLocaleUpperCase();
+                        //       term = query.term.toLocaleUpperCase();
+                        //       if (text.localeCompare(term) === 0) {
+                        //         found = true;
+                        //         break;
+                        //       }
+                        //     }
+                        //     if (!found){
+                        //       data.results.push({ id: query.term, text: query.term });
+                        //     }
+                        //   }
+                        //   for (var i = 0, len = data_select2.length; i < len; i++) {
+                        //     text = data_select2[i].text.toUpperCase();
+                        //     term = query.term.toUpperCase();
+                        //     if (text.indexOf(term) >= 0) {
+                        //       data.results.push(data_select2[i]);
+                        //     }
+                        //   }
+                        //   query.callback(data);
+                        // }
                      })
-    .on("change", function() {
-      var result = $selector.select2('val'),
+    .on("change blur close select2-blur select2-close", function(event) {
+      console.log($selector.select2('val'));
+      console.log($selector.find(':selected').text());
+
+      $('#s2id_' + selector.id).removeAttr('data-hint');
+      $('#s2id_' + selector.id).removeClass('hint--always');
+
+      var result = $selector.find(":selected").text(),
           found = false;
 
       if (!result) return;
 
-      for (var i = 0, len = choices.length; i < len; i++) {
-        if (choices[i].id.localeCompare(result) === 0) {
+      for (var i = 0, len = data_select2.length; i < len; i++) {
+        if (data_select2[i].id.localeCompare(result) === 0) {
           found = true;
           break;
         }
       }
       if (!found) {
-        choices.splice(0, 0, {id: result, text: result});
-        //choices.push({id: result, text: result});
+        var ajax_object = {};
+        ajax_object[model_attribute] = result;
+        $.ajax({
+          url: post_url,
+          type: 'post',
+          dataType: 'json',
+          data: ajax_object,
+          beforeSend: function() {
+            $('#s2id_' + selector.id + ' .select2-chosen').addClass('select2-spinner');
+            var $form = $(selector.form);
+            $form.find('input[name="commit"]').prop('disabled', 'disabled');
+            $form.on("submit", function(event){
+              event.preventDefault();
+            });
+          },
+          success: function(data){
+            data_select2.splice(0, 0, {id: data.id, text: data[model_attribute]});
+          },
+          error: function(jqXHR, textStatus, error){
+            if (jqXHR.status === 404) {
+              $('#s2id_' + selector.id).attr('data-hint', RMPlus.Utils.combobox_404);
+            } else {
+              $('#s2id_' + selector.id).attr('data-hint', RMPlus.Utils.combobox_error);
+            }
+            $('#s2id_' + selector.id).addClass('hint--always');
+          },
+          complete: function(jqXHR, textStatus){
+            $('#s2id_' + selector.id + ' .select2-chosen').removeClass('select2-spinner');
+            var $form = $(selector.form);
+            $form.find('input[name="commit"]').removeProp('disabled');
+            $form.off("submit");
+            //data_select2.splice(0, 0, {id: -1, text: result});
+          }
+        });
       }
+    }).on("click", function(event) {
+      $('#s2id_' + selector.id).removeClass('hint--always');
+      $('#s2id_' + selector.id).removeAttr('data-hint');
+    }).on("select2-clearing", function(event){
+      event.preventDefault();
     });
   };
+  $('input.select2-input').each(function(){
+    $(this).on('keypress keyup keydown', function(event){
+      console.log(event.target);
+    });
+  });
 
   return my;
 })(RMPlus.Utils || {});
-

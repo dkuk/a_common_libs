@@ -41,13 +41,20 @@
   <%= stylesheet_link_tag :modal_windows, :plugin => :a_common_libs %>
 <% end %>
 
+<%= stylesheet_link_tag :hint, :plugin => :a_common_libs %>
+
 <script>
 //<![CDATA[
   RMPlus.Utils = (function(my){
     var my = my || {};
 
-    my.ajax_placeholder = '<%= l(:ajax_placeholder) %>';
+    my.combobox_placeholder = '<%= l(:ajax_placeholder) %>';
+
+    my.combobox_404 = '<%= l(:combobox_404) %>';
+
+    my.combobox_error = '<%= l(:combobox_error) %>';
 
     return my;
   })(RMPlus.Utils || {});
 //]]>
+</script>

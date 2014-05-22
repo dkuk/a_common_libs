@@ -10,3 +10,5 @@ ru:
   settings_enable_modal_windows: "Разрешить модальные окна (необходимо для плагинов KPI, LuxuryButtons)"
   settings_enable_jquery_cookies: "Включить плагин jQuery Cookie"
   ajax_placeholder: "Введите данные"
+  combobox_error: "Ошибка сервера, попробуйте позже"
+  combobox_404: "Ошибка 404, URL не найден"
