@@ -14,7 +14,10 @@
   width: auto;
   clear: left;
   text-align: left;
-
+}
+div.box.tabular.settings {
+  overflow: hidden;
+  overflow-x: auto;
 }
 
 .settings fieldset {
