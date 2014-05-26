@@ -100,9 +100,10 @@ RMPlus.LIB = (function (my) {
 
   } /* resize_bs_modal ENDS */
 
-  my.store_previous_bs_modal_size_and_hide = function (link) {
-    var $link = $(link);
-    var $cur_bs = $link.parents('.modal').first();
+  my.bs_stored_size = {}
+
+  my.store_previous_bs_modal_size_and_hide = function ($link) {
+    var $cur_bs = $link.parents('.modal');
     if (typeof $cur_bs != 'undefined') {
       if ( typeof $link.attr('data-save-previous-height') != 'undefined') {
         $link.attr('data-body-height', $cur_bs.find('.modal-body').height());
@@ -111,39 +112,39 @@ RMPlus.LIB = (function (my) {
         $link.attr('data-full-height', $cur_bs.height());
       }
       $cur_bs.modal('hide');
-      if($cur_bs.attr('id') == 'bs-modal-dynamic') $cur_bs.remove();
     }
+    $('#bs-modal-dynamic').modal('hide').remove();
   }
 
-  my.fill_bs_modal_attrs = function ($link, $bs_modal) {
+  my.fill_bs_modal_attrs = function ($link, $target) {
     if ( typeof $link.attr('data-modal-height') != 'undefined' ) {
       // todo: make for href='#modalId'
-      $bs_modal.attr('data-height', $link.attr('data-modal-height'));
+      $target.attr('data-height', $link.attr('data-modal-height'));
     }
     if ( typeof $link.attr('data-modal-width') != 'undefined' ) {
       // todo: make for href='#modalId'
-      $bs_modal.attr('data-width', $link.attr('data-modal-width'));
+      $target.attr('data-width', $link.attr('data-modal-width'));
     }
     if ( typeof $link.attr('data-modal-min-width') != 'undefined' ) {
       // todo: make for href='#modalId'
-      $bs_modal.attr('data-min-width', $link.attr('data-modal-min-width'));
+      $target.attr('data-min-width', $link.attr('data-modal-min-width'));
     }
 
     if ( typeof $link.attr('data-body-height') != 'undefined' ) {
-      $bs_modal.attr('data-body-height', $link.attr('data-body-height'));
+      $target.attr('data-body-height', $link.attr('data-body-height'));
     }
     if ( typeof $link.attr('data-footer-height') != 'undefined' ) {
-      $bs_modal.attr('data-footer-height', $link.attr('data-footer-height'));
+      $target.attr('data-footer-height', $link.attr('data-footer-height'));
     }
     if ( typeof $link.attr('data-header-height') != 'undefined' ) {
-      $bs_modal.attr('data-header-height', $link.attr('data-header-height'));
+      $target.attr('data-header-height', $link.attr('data-header-height'));
     }
   }
 
   my.render_dynamic_bs_modal = function (link) {
-
     var $link = $(link);
-    RMPlus.LIB.store_previous_bs_modal_size_and_hide(link);
+    RMPlus.LIB.store_previous_bs_modal_size_and_hide($link);
+
     var $target = $($link.attr('data-target') || ($link.href && $link.href.replace(/.*(?=#[^\s]+$)/, '')));
 
     // Render dynamic modal
@@ -173,7 +174,7 @@ RMPlus.LIB = (function (my) {
         $target.modal('show');
         return false;
       } else {
-        // load data self and trigger resize due loaded only sciense 3rd Bottstrap
+        // load data self and trigger resize due loaded even present on bs.modal only sciense 3rd Bottstrap
         var $load_to = $target.find('.modal-body');
         if ($load_to.length == 0) { $load_to = $target }
         if ($link.hasClass('show-loader')) {
@@ -218,7 +219,7 @@ $(document).ready(function () {
   // });
 
   $(window).on('resize', function () {
-    $('.modal').each(function () {
+    $('.modal:visible').each(function () {
       RMPlus.LIB.resize_bs_modal(this);
     });
   });
