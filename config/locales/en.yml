@@ -8,4 +8,3 @@ en:
   settings_enable_qmpicker_lib: "Enable QuarterMonthPicker and moment.js libraries"
   settings_enable_javascript_patches: "Enable patches to core redmine javascript (required for ldap_users_sync, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
   settings_enable_modal_windows: "Enable tiny modals (required for KPI, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
-  settings_enable_jquery_cookies: "Enable Jquery Cookie plugin"
