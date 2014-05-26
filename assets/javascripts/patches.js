@@ -16,16 +16,40 @@
     var $par_ul = $tab.parents('div.tabs').first();
     $par_ul.find('li a').each(function (index) {
       $(this).removeClass('selected');
-      var tab_name = $(this).attr('id').split('-')[1];
-      console.log(tab_name)
+      var tab_name = $(this).attr('id').split('tab-')[1];
+      // console.log(tab_name)
       $('#tab-content-' + tab_name).hide();
     });
     $('#tab-content-' + name).show();
     $tab.addClass('selected');
     //replaces current URL with the "href" attribute of the current link
     //(only triggered if supported by browser)
+    // if ('replaceState' in window.history) {
+    //   window.history.replaceState(null, document.title, url);
+    // }
+
+    var loc = location.href.split('#');
+    var loc_tabbed = loc[0].split('tab=');
+    var loc_clear = loc_tabbed[0];
+    if (loc_tabbed.length>1) {
+      var loc_vars = loc_tabbed[1].split('&')
+      for (var l=1;l<loc_vars.length; l++) {
+        loc_clear = loc_clear+'&'+loc_vars[l];
+      }
+    }
+
+    if (loc_clear[loc_clear.length-1] == '?' || loc_clear[loc_clear.length-1] == '&') {
+      loc_clear = loc_clear.substring(0, loc_clear.length - 1)
+    }
+
+    var q_pos = loc_clear.indexOf('?');
+    if (q_pos == -1) {
+      loc_clear = loc_clear + '?tab=' + name;
+    } else {
+      loc_clear = loc_clear + '&tab=' + name;
+    }
     if ('replaceState' in window.history) {
-      window.history.replaceState(null, document.title, url);
+      window.history.replaceState(null, document.title, loc_clear);
     }
     return false;
   }
