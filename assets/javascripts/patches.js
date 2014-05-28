@@ -11,9 +11,10 @@
   // store original reference to the method, may be useful for future refactoring
   var showTab_without_patches  = showTab;
 
-  showTab = function (name, url) {
+  showTab = function (name, url, container) {
     var $tab = $('#tab-' + name);
-    var $par_ul = $tab.parents('div.tabs').first();
+    container = (typeof container == 'undefined' ? 'div.tabs' : container.toString( ));
+    var $par_ul = $tab.parents(container).first();
     $par_ul.find('li a').each(function (index) {
       $(this).removeClass('selected');
       var tab_name = $(this).attr('id').split('tab-')[1];
