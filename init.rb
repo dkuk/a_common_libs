@@ -11,6 +11,7 @@ end
 
 Rails.application.config.to_prepare do
   ApplicationHelper.send(:include, ACommonLibs::ApplicationHelperPatch)
+  SettingsController.send(:include, ACommonLibs::SettingsControllerPatch)
 end
 
 require 'a_common_libs/view_hooks'
