@@ -165,8 +165,8 @@ RMPlus.Utils = (function(my) {
           success: function(data){
             data_select2.splice(0, 0, {id: data.id, text: data[model_attribute]});
             data_select2.sort(function(a, b){
-              var nameA=a[model_attribute].toLowerCase(),
-                  nameB=b[model_attribute].toLowerCase();
+              var nameA=a.text.toLowerCase(),
+                  nameB=b.text.toLowerCase();
               if (nameA < nameB)
                 return -1;
               if (nameA > nameB)
