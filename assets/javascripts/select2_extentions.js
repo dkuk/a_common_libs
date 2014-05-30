@@ -126,7 +126,7 @@ RMPlus.Utils = (function(my) {
                           query.callback(data);
                         }
                      })
-    .on("change blur close select2-blur select2-close", function(event) {
+    .on("change blur close", function(event) {
       // console.log($selector.select2('val'));
       // console.log($selector.find(':selected').text());
 
@@ -139,14 +139,16 @@ RMPlus.Utils = (function(my) {
       if (!result) return;
 
       for (var i = 0, len = data_select2.length; i < len; i++) {
-        if (data_select2[i].id.localeCompare(result) === 0) {
-          found = true;
-          break;
+        if (typeof data_select2[i].id === 'undefined') {
+          if (data_select2[i].id.localeCompare(result) === 0) {
+            found = true;
+            break;
+          }
         }
       }
       if (!found) {
         var ajax_object = {};
-        ajax_object[model_attribute] = result;
+        ajax_object[model_attribute] = $.trim(result);
         $.ajax({
           url: post_url,
           type: 'post',
@@ -162,6 +164,14 @@ RMPlus.Utils = (function(my) {
           },
           success: function(data){
             data_select2.splice(0, 0, {id: data.id, text: data[model_attribute]});
+            data_select2.sort(function(a, b){
+              var nameA=a[model_attribute].toLowerCase(),
+                  nameB=b[model_attribute].toLowerCase();
+              if (nameA < nameB)
+                return -1;
+              if (nameA > nameB)
+                return 1;
+            });
           },
           error: function(jqXHR, textStatus, error){
             var $select2_container = $('#s2id_' + selector.id);
