@@ -15,6 +15,9 @@ Array.prototype.contains = function(element){
         this.replaceWith(function() {
             return $("<" + newType + "/>", attrs).append($(this).contents());
         });
+    },
+    $.fn.isNumber = function(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
     }
 })(jQuery);
 
