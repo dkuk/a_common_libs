@@ -181,6 +181,14 @@ div.tooltip-inner {
 .tooltip.right div.tooltip-arrow {
   border-right-color: #F8F8CC;
 }
+div.tooltip.bottom div.tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #F8F8CC;
+}
+
 
 /* ------ tooltip style walkaround ends ----*/
 
