@@ -74,10 +74,11 @@ RMPlus.Utils = (function(my) {
     return true;
   };
 
-  my.makeSelect2Combobox = function(selector){
+  my.makeSelect2Combobox = function(selector, width){
     var get_url = selector.getAttribute('data-get-url') || '';
     var post_url = selector.getAttribute('data-post-url') || '';
     var model_attribute = selector.getAttribute('data-model-attribute') || 'name';
+    var width = width || "copy";
 
     var placeholder = RMPlus.Utils.combobox_placeholder;
     var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 0;
@@ -95,7 +96,7 @@ RMPlus.Utils = (function(my) {
     }
     var $selector = $(selector);
 
-    $selector.select2({ width: '400px',
+    $selector.select2({ width: width,
                         placeholder: placeholder,
                         allowClear: true,
                         minimumInputLength: min_search_length,
