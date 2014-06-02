@@ -126,19 +126,19 @@ RMPlus.Utils = (function(my) {
                           query.callback(data);
                         }
                      })
-    .on("change blur close", function(event) {
-      // console.log($selector.select2('val'));
-      // console.log($selector.find(':selected').text());
-
+    .on("change blur close", function(event){
       $('#s2id_' + selector.id).removeAttr('data-hint');
       $('#s2id_' + selector.id).removeClass('hint--always');
 
-      var result = $selector.select2('val');//find(":selected").text(),
+      var result = $selector.select2('val');
           found = false;
 
       if (!result) return;
 
       for (var i = 0, len = data_select2.length; i < len; i++) {
+        if (data_select2[i].id === $.trim(result)){
+          return;
+        }
         if (typeof data_select2[i].id === 'undefined') {
           if (data_select2[i].id.localeCompare(result) === 0) {
             found = true;
@@ -165,13 +165,18 @@ RMPlus.Utils = (function(my) {
           success: function(data){
             data_select2.splice(0, 0, {id: data.id, text: data[model_attribute]});
             data_select2.sort(function(a, b){
-              var nameA=a.text.toLowerCase(),
-                  nameB=b.text.toLowerCase();
+              var nameA=$.trim(a.text.toLowerCase()),
+                  nameB=$.trim(b.text.toLowerCase());
+              if (nameA === "")
+                return -1;
               if (nameA < nameB)
                 return -1;
               if (nameA > nameB)
                 return 1;
+              if (nameA === nameB)
+                return 0;
             });
+            $selector.select2("data", {id: data.id, text: data[model_attribute]});
           },
           error: function(jqXHR, textStatus, error){
             var $select2_container = $('#s2id_' + selector.id);
