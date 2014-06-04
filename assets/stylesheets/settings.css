@@ -1,8 +1,8 @@
-div.settings p {
+.settings p {
   padding-left: 0 !important;
 }
 
-div.settings input[type="submit"] {
+.settings input[type="submit"] {
   text-align: left !important;
 }
 
@@ -17,11 +17,11 @@ div.settings input[type="submit"] {
 
 }
 
-div.settings fieldset {
+.settings fieldset {
   margin-bottom: 8px;
 }
 
-div.settings label.for-checkbox {
+.settings label.for-checkbox {
   display: block;
   clear: left;
 }
