@@ -18,24 +18,21 @@ Array.prototype.contains = function(element){
     },
     $.fn.isNumber = function(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
-    },
-
-    // Case-insensetive search for jQuery < 1.8
-    $.expr[':'].Contains = function(elem, index, match) {
-      return $(elem).text().toUpperCase().indexOf(match[3].toUpperCase()) >= 0;
     }
-
-    // Case-insensetive search for jQuery >= 1.8
-    // jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
-    //     return function( elem ) {
-    //         return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-    //     };
-    // });
-
 
 })(jQuery);
 
+// Case-insensetive search for jQuery < 1.8
+$.expr[':'].Contains = function(elem, index, match) {
+  return $(elem).text().toUpperCase().indexOf(match[3].toUpperCase()) >= 0;
+}
 
+// Case-insensetive search for jQuery >= 1.8
+// jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
+//     return function( elem ) {
+//         return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+//     };
+// });
 
 // usage:
 // var visible = TabIsVisible(); // gives current state
