@@ -8,6 +8,7 @@
   enable_modal_windows = settings['enable_modal_windows']
   enable_jquery_cookies = settings['enable_jquery_cookies']
 %>
+
 <h3><%= l(:including_external_libraries) %></h3>
 
 <div style="overflow: hidden">
@@ -52,3 +53,5 @@
     &mdash; <%=l(:settings_enable_modal_windows).html_safe %>
   </label>
 </div>
+
+<%= render :file => File.join(File.dirname(__FILE__), "_rmplus_logo.html.erb") %>

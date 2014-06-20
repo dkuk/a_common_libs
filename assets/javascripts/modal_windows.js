@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
 
     jQuery("div.modal_window").hide();
 
-    if ( (cur_window.text() != "" || cur_window.hasClass("permanent_modal_window")) && !this_link.hasClass("refreshable") ){
+    if ( (cur_window.text() != '' || cur_window.hasClass('permanent_modal_window') || this_link.hasClass('static_content_only')) && !this_link.hasClass('refreshable') ){
       show_modal(id);
     }
     else{

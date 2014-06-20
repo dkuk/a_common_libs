@@ -6,12 +6,10 @@ en:
   settings_enable_bootstrap_lib_for_luxury_buttons: "Only components for the plugin <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a>"
   including_external_libraries: "The inclusion of third-party libraries"
   settings_enable_qmpicker_lib: "Enable QuarterMonthPicker and moment.js libraries"
-
-  settings_enable_javascript_patches: "Enable patches to core redmine javascript"
-  settings_enable_modal_windows: "Enable tiny modals (required for KPI, LuxuryButtons plugins)"
+  settings_enable_javascript_patches: "Enable patches to core redmine javascript (required for ldap_users_sync, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
+  settings_enable_modal_windows: "Enable tiny modals (required for KPI, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
+  settings_enable_jquery_cookies: "Enable Jquery Cookie plugin"
   ajax_placeholder: "Please, enter or select data"
   combobox_error: "Server error, please try again later"
   combobox_404: "404 error, URL not found"
-
-  settings_enable_javascript_patches: "Enable patches to core redmine javascript (required for ldap_users_sync, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
-  settings_enable_modal_windows: "Enable tiny modals (required for KPI, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
+  label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
