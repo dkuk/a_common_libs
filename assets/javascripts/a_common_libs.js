@@ -12,7 +12,13 @@ $(document).ready(function(){
     }
     else {
       if (this.tagName.toLowerCase() === 'select') {
-        $(this).select2({width: '400px', allowClear: true});
+        var select2_width = this.getAttribute('data-select2-width');
+        if ( select2_width != undefined){
+          $(this).select2({width: select2_width, allowClear: true})
+        }
+        else {
+          $(this).select2({width: '400px', allowClear: true});
+        }
       }
     }
   });

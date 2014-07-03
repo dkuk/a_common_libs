@@ -20,6 +20,9 @@
   <%= javascript_include_tag 'select2', :plugin => :a_common_libs %>
   <%= stylesheet_link_tag :select2, :plugin => :a_common_libs %>
   <%= javascript_include_tag :a_common_libs, :plugin => :a_common_libs %>
+  <% if I18n.locale == :ru %>
+    <%= javascript_include_tag 'select2_locale_ru', :plugin => :a_common_libs %>
+  <% end %>
 <% end %>
 
 <% if settings['enable_qmpicker'] %>
