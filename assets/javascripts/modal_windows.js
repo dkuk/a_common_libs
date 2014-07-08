@@ -42,7 +42,6 @@ $(document).ready(function(){
     $('[id^="modal-mw-"]').filter(function() {
       var element = $(this);
       if(element.css('display') === 'none') {
-        element.remove();
         return false;
       }
       return true;
