@@ -39,23 +39,27 @@ $(document).ready(function(){
     var x = event.clientX;
     var y = event.clientY;
     var outside = false;
-    $('[id^="modal-mw-"]').filter(function() {
+    $('[id^="modal-"]').filter(function() {
       var element = $(this);
       if(element.css('display') === 'none') {
-        element.remove();
         return false;
       }
       return true;
     }).each(function(){
-      var left = parseInt(this.getAttribute('data-left'));
-      var right = parseInt(this.getAttribute('data-right'));
-      var top = parseInt(this.getAttribute('data-top'));
-      var bottom = parseInt(this.getAttribute('data-bottom'));
+      var outside_each = false;
+      var left = parseInt(this.getAttribute('data-left')) || 0;
+      var right = parseInt(this.getAttribute('data-right')) || 0;
+      var top = parseInt(this.getAttribute('data-top')) || 0;
+      var bottom = parseInt(this.getAttribute('data-bottom')) || 0;
       if (left > 0 && right > 0 && top > 0 && bottom > 0){
         if (x < left || x > right || y < top || y > bottom){
-          outside = true;
+          outside_each = true;
         }
       }
+      else {
+        outside_each = true
+      }
+      outside = outside || outside_each;
     });
     if( !$(event.target).hasClass("modal_window") && $(event.target).parents("div.modal_window").length == 0 && outside){
       $("div.modal_window").hide();
@@ -160,9 +164,11 @@ function show_modal(id) {
   cur_window.show();
   cur_window.trigger('modal_window_shown');
 
-  var rect = cur_window.get(0).getBoundingClientRect();
-  cur_window.attr('data-left', rect.left);
-  cur_window.attr('data-right', rect.right);
-  cur_window.attr('data-top', rect.top);
-  cur_window.attr('data-bottom', rect.bottom);
+  if (cur_window.find('div.select2-container').length > 0){
+    var rect = cur_window.get(0).getBoundingClientRect();
+    cur_window.attr('data-left', rect.left);
+    cur_window.attr('data-right', rect.right);
+    cur_window.attr('data-top', rect.top);
+    cur_window.attr('data-bottom', rect.bottom);
+  }
 }
