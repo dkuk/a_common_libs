@@ -221,15 +221,6 @@ div.tooltip-inner {
   text-decoration:none;
 }
 
-.tabs ul li a.selected {
-  background-color: #fff;
-  border: 1px solid #bbbbbb;
-  border-bottom: 1px solid #fff;
-  color:#444;
-}
-
-.tabs ul li a.selected:hover {background-color: #fff;}
-
 .select2-spinner {
     background: #fff url('../images/select2-spinner.gif') no-repeat 100%;
     background: url('../images/select2-spinner.gif') no-repeat 100%, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
