@@ -21,6 +21,13 @@ Array.prototype.contains = function(element){
     }
 })(jQuery);
 
+// jQuery plugin to get string representation of the element
+(function($) {
+  $.fn.outerHTML = function() {
+    return $(this).clone().wrap('<div></div>').parent().html();
+  }
+})(jQuery);
+
 // usage:
 // var visible = TabIsVisible(); // gives current state
 // TabIsVisible(function(){ // registers a handler for visibility changes
