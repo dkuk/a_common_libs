@@ -2,7 +2,7 @@
   display: none;
   position: absolute;
   overflow: hidden;
-  z-index: 1100;
+  z-index: 9999999;
   padding: 10px 10px 10px 10px;
   margin: 0px 0px 0px 0px;
   background: white;
