@@ -103,17 +103,9 @@ a span.count.unread {
   background-color: #c3e26b;
 }
 
-a.selected, .selected {
-  padding: 3px;
-  background-color: #ef7f1a;
-  border-radius: 0px;
-  color: #fff;
-}
 
-.selected a, a.selected span, a:hover.selected span {
-  color: #fff;
-  border-bottom-color: #fff;
-}
+
+
 
 /*-----------------------------------------------------*/
 /* Tables */
@@ -191,15 +183,7 @@ div.tooltip-inner {
 
 .tabs ul {margin:0; position:absolute; bottom:0; padding-left:0.5em; width: 2000px; border-bottom: 1px solid #bbbbbb;}
 
-.tabs ul li {
-  float:left;
-  list-style-type:none;
-  white-space:nowrap;
-  margin-right:4px;
-  background:#fff;
-  position:relative;
-  margin-bottom:-1px;
-}
+
 
 .tabs ul li a{
   display:block;
@@ -229,6 +213,23 @@ div.tooltip-inner {
     background: url('../images/select2-spinner.gif') no-repeat 100%, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
     background: url('../images/select2-spinner.gif') no-repeat 100%, -ms-linear-gradient(top, #ffffff 85%, #eeeeee 99%);
     background: url('../images/select2-spinner.gif') no-repeat 100%, linear-gradient(top, #ffffff 85%, #eeeeee 99%);
+}
+
+.tabs ul li a.selected {
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+  border-bottom: 1px solid #fff;
+  color: #444;
+}
+
+.tabs ul li {
+  float:left;
+  list-style-type:none;
+  white-space:nowrap;
+  margin-right:4px;
+  background:#fff;
+  position:relative;
+  margin-bottom:-1px;
 }
 
 /* ---- Redmine tabs fix ends ---- */
