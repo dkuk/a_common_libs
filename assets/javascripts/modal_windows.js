@@ -19,7 +19,13 @@ $(document).ready(function(){
     }
     cur_window.prependTo(document.body);
 
-    jQuery("div.modal_window").hide();
+    if (this_link.hasClass('over_parent_window')) {
+      var parent_z_index = this_link.parents('div.modal_window:first').zIndex();
+      cur_window.zIndex(parent_z_index + 1);
+    }
+    else {
+      jQuery("div.modal_window").hide();
+    }
 
     if ( (cur_window.text() != '' || cur_window.hasClass('permanent_modal_window') || this_link.hasClass('static_content_only')) && !this_link.hasClass('refreshable') ){
       show_modal(id);
