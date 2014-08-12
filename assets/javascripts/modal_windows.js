@@ -36,8 +36,8 @@ $(document).ready(function(){
   })
 
   $(document.body).on('click', function (event) {
-    var x = event.clientX;
-    var y = event.clientY;
+    var x = event.pageX;
+    var y = event.pageY;
     var outside = false;
     $('[id^="modal-"]').filter(function() {
       var element = $(this);
@@ -165,10 +165,12 @@ function show_modal(id) {
   cur_window.trigger('modal_window_shown');
 
   if (cur_window.find('div.select2-container').length > 0){
-    var rect = cur_window.get(0).getBoundingClientRect();
-    cur_window.attr('data-left', rect.left);
-    cur_window.attr('data-right', rect.right);
-    cur_window.attr('data-top', rect.top);
-    cur_window.attr('data-bottom', rect.bottom);
+    var offset = cur_window.offset();
+    offset.bottom = offset.top + cur_window.height();
+    offset.right = offset.left + cur_window.width();
+    cur_window.attr('data-left', offset.left);
+    cur_window.attr('data-right', offset.right);
+    cur_window.attr('data-top', offset.top);
+    cur_window.attr('data-bottom', offset.bottom);
   }
 }
