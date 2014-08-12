@@ -39,7 +39,7 @@ $(document).ready(function(){
     }
 
     return false;
-  })
+  });
 
   $(document.body).on('click', function (event) {
     var x = event.pageX;
@@ -53,10 +53,11 @@ $(document).ready(function(){
       return true;
     }).each(function(){
       var outside_each = false;
-      var left = parseInt(this.getAttribute('data-left')) || 0;
-      var right = parseInt(this.getAttribute('data-right')) || 0;
-      var top = parseInt(this.getAttribute('data-top')) || 0;
-      var bottom = parseInt(this.getAttribute('data-bottom')) || 0;
+      var m = $(this);
+      var left = (parseInt(this.getAttribute('data-left')) || 0);
+      var right = left + m.outerWidth( ) || 0;
+      var top = (parseInt(this.getAttribute('data-top')) || 0);
+      var bottom = top + m.outerHeight( ) || 0;
       if (left > 0 && right > 0 && top > 0 && bottom > 0){
         if (x < left || x > right || y < top || y > bottom){
           outside_each = true;
@@ -170,13 +171,9 @@ function show_modal(id) {
   cur_window.show();
   cur_window.trigger('modal_window_shown');
 
-  if (cur_window.find('div.select2-container').length > 0){
+  if (cur_window.find('div.select2-container, input.ui-autocomplete-input').length > 0){
     var offset = cur_window.offset();
-    offset.bottom = offset.top + cur_window.height();
-    offset.right = offset.left + cur_window.width();
     cur_window.attr('data-left', offset.left);
-    cur_window.attr('data-right', offset.right);
     cur_window.attr('data-top', offset.top);
-    cur_window.attr('data-bottom', offset.bottom);
   }
 }
