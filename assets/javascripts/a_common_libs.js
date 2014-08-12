@@ -6,7 +6,7 @@ var RMPlus = (function (my) {
 
 $(document).ready(function(){
 
-  $('select.select2, input[type="hidden"]').each(function(){
+  $('select.select2, input[type="hidden"], input.ui-autocomplete-input').each(function(){
     if (this.getAttribute('data-combobox') === 'true'){
       RMPlus.Utils.makeSelect2Combobox(this);
     }
