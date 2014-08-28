@@ -45,7 +45,7 @@ a.no_line, #top-menu li a, #top-menu li a span {
 div.loader {
   width: 16px;
   height: 16px;
-  background-image: url(../images/mw_loader.gif);
+  background-image: url(../images/mw_load.gif);
   background-repeat: no-repeat;
   display: inline-block;
   background-position: center;
