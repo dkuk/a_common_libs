@@ -140,20 +140,25 @@ function show_modal(id) {
   var doc_h = jQuery(window).height();
   var margin = 5;
 
+  if (jQuery("#"+id).hasClass("block-preffered")) {
+    if ((jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width + link.left) && mw_width < link.left + link.width) {
+      link.left = link.left + link.width + margin;
+    }
+    else { link.width = -margin; }
 
-  // if ( (jQuery(window).width() < cur_window.outerWidth()+link.left+link.width+margin) && (link.left < margin+cur_window.outerWidth()) ) {
-  //   borders_w = cur_window.outerWidth()-cur_window.width()
-  //   new_w = (link.left > jQuery(window).width()-(link.left+link.width+margin*2)) ? link.left-borders_w : jQuery(window).width()-(link.left+link.width+borders_w);
-  //   cur_window.width(new_w-margin*2);
-  // }
+    if ((jQuery("#"+id).hasClass("top-preffered") || doc_h < mw_height + link.top + link.height) && mw_height < link.top) {
+      link.height = 0;
+    }
+    else { link.top = link.top + link.height; }
+  }
 
   // right from element - is default
   cur_window.css("left", link.left+link.width+margin+jQuery(document).scrollLeft());
 
-  if( jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width+link.left+link.width+margin) {
+  if (jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width + link.left + link.width + margin) {
     // try to display left if preffered left or no space at right
-    if ( mw_width < link.left) {
-      cur_window.css("left", link.left-margin-mw_width+jQuery(document).scrollLeft());
+    if (mw_width < link.left) {
+      cur_window.css("left", link.left - margin - mw_width + jQuery(document).scrollLeft( ));
     }
   }
 
@@ -161,12 +166,14 @@ function show_modal(id) {
   // vertical position - default down
   cur_window.css('top', link.top+jQuery(document).scrollTop());
 
-  if ( jQuery('#'+id).hasClass('top-preffered') || doc_h < link.top+mw_height-link.height ) { // && cur_window.outerHeight() < link.top+link.height) {
+  if ( jQuery('#'+id).hasClass('top-preffered') || doc_h < link.top + mw_height - link.height) { // && cur_window.outerHeight() < link.top+link.height) {
     // try to display as preffered no space bottom or top-preffered and
     if (mw_height < link.top+link.height) {
       cur_window.css('top', link.top+jQuery(document).scrollTop()+link.height-mw_height);
     }
   }
+
+
 
   cur_window.show();
   cur_window.trigger('modal_window_shown');
