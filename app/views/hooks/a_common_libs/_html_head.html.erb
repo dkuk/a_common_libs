@@ -31,10 +31,6 @@
   <%= javascript_include_tag :quartermonthpicker, :plugin => :a_common_libs %>
 <% end %>
 
-<%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
-
-<%= javascript_include_tag 'utils.js', :plugin => :a_common_libs %>
-
 <% if settings['enable_javascript_patches'] %>
   <%= javascript_include_tag 'patches.js', :plugin => :a_common_libs %>
 <% end %>
@@ -45,6 +41,8 @@
 <% end %>
 
 <%= stylesheet_link_tag :hint, :plugin => :a_common_libs %>
+<%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
+<%= javascript_include_tag 'utils.js', :plugin => :a_common_libs %>
 
 <script>
 //<![CDATA[
