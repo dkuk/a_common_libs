@@ -89,7 +89,7 @@ RMPlus.Utils = (function(my) {
       var $selector = $(selector);
       init_value = ($selector.val() || '').toString();
       $.each($selector.children(), function(){
-        data_select2.push({id: this.value, text: this.innerText });
+        data_select2.push({id: this.value, text: this.textContent });
       });
       $selector.children().remove();
       $selector.changeElementType('input');
