@@ -185,3 +185,11 @@ div.tooltip-inner {
 }
 
 /* ---- Redmine tabs fix ends ---- */
+
+a.select2-search-choice-close,
+a.select2-search-choice-close:hover,
+a.select2-search-choice-close span
+a.select2-search-choice-close:hover span {
+  text-decoration: none;
+  border: none;
+}
