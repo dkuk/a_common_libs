@@ -9,6 +9,7 @@ en:
   settings_enable_javascript_patches: "Enable patches to core redmine javascript (required for ldap_users_sync, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
   settings_enable_modal_windows: "Enable tiny modals (required for KPI, <a href='http://rmplus.pro/en/luxury_buttons' target='_blank'>&laquo;Luxury Buttons&raquo;</a> plugins)"
   settings_enable_jquery_cookies: "Enable Jquery Cookie plugin"
+  settings_enable_font_awesome: "Enable font icons - <a href='http://fortawesome.github.io/Font-Awesome/' target='_blank'>&laquo;FontAwesome&raquo;</a>"
   ajax_placeholder: "Please, enter or select data"
   combobox_error: "Server error, please try again later"
   combobox_404: "404 error, URL not found"
