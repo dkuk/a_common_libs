@@ -20,6 +20,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.rm-icon.rm-nom:before {
+  margin: 0;
+}
+
+.rm-075s:before {
+  font-size: 75%;
+  top: -1px;
+}
+.rm-08s:before {
+  font-size: 80%;
+}
+.rm-09s:before {
+  font-size: 90%;
+}
 .rm-01x:before {
   font-size: 110%;
 }
