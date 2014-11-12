@@ -20,7 +20,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+.rm-01x:before {
+  font-size: 110%;
+}
+.rm-02x:before {
+  font-size: 120%;
+}
+.rm-03x:before {
+  font-size: 130%;
+}
+.rm-05x:before {
+  font-size: 150%;
+}
+.rm-2x:before {
+  font-size: 200%;
+}
 
 @font-face {
   font-family: 'FontAwesome';
