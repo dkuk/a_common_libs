@@ -7,7 +7,7 @@
 
 .rm-icon:before {
   position: relative;
-  top: 1px;
+  /*top: 1px;*/
   display: inline-block;
   font-family: 'FontAwesome';
   font-style: normal;
