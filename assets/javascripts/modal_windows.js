@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
   jQuery(document.body).on('click', '.link_to_modal', function () {
     var this_link = jQuery(this);
@@ -35,7 +35,7 @@ $(document).ready(function(){
       jQuery("#mw_content_load").css("left", link.left);
       jQuery("#mw_content_load").css("top", link.top);
       jQuery("#mw_content_load").show();
-      cur_window.load(this_link.attr("href"), function(){show_modal(id)});
+      cur_window.load(this_link.attr("href"), function () { show_modal(id) });
     }
 
     return false;
@@ -45,7 +45,7 @@ $(document).ready(function(){
     var x = event.pageX;
     var y = event.pageY;
     var outside = false;
-    $('[id^="modal-"]').filter(function() {
+    $('[id^="modal-"]').filter( function () {
       var element = $(this);
       if(element.css('display') === 'none') {
         return false;
@@ -116,7 +116,7 @@ $(document).ready(function(){
 });
 
 
-function append_loader(){
+function append_loader () {
   if (jQuery("#mw_content_load").length == 0) {
     jQuery(document.body).append('<div id="mw_content_load" class="loader">&nbsp;</div>');
   }
