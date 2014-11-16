@@ -45,19 +45,20 @@ $(document).ready(function () {
     var x = event.pageX;
     var y = event.pageY;
     var outside = false;
+    var target = $(event.target);
+    var ui_elements = target.parents('.ui-widget:first');
     $('[id^="modal-"]').filter( function () {
-      var element = $(this);
-      if(element.css('display') === 'none') {
+      if ($(this).css('display') === 'none') {
         return false;
       }
       return true;
-    }).each(function(){
+    }).each(function () {
       var outside_each = false;
       var m = $(this);
       var left = (parseInt(this.getAttribute('data-left')) || 0);
-      var right = left + m.outerWidth( ) || 0;
+      var right = left + m.outerWidth() || 0;
       var top = (parseInt(this.getAttribute('data-top')) || 0);
-      var bottom = top + m.outerHeight( ) || 0;
+      var bottom = top + m.outerHeight() || 0;
       if (left > 0 && right > 0 && top > 0 && bottom > 0){
         if (x < left || x > right || y < top || y > bottom){
           outside_each = true;
@@ -68,7 +69,7 @@ $(document).ready(function () {
       }
       outside = outside || outside_each;
     });
-    if( !$(event.target).hasClass("modal_window") && $(event.target).parents("div.modal_window").length == 0 && outside){
+    if (!target.hasClass("modal_window") && target.parents("div.modal_window").length == 0 && outside && ui_elements.length < 1) {
       $("div.modal_window").hide();
     }
   });
@@ -76,8 +77,8 @@ $(document).ready(function () {
   jQuery(document.body).on('mouseleave', "div.modal_window", function (evt) {
     var mw_div = jQuery(evt.target)
 
-    if (!mw_div.hasClass('modal_window')){
-      mw_div = jQuery(evt.target).parents(".modal_window")
+    if (!mw_div.hasClass('modal_window')) {
+      mw_div = mw_div.parents(".modal_window");
     }
 
     if (evt.target.nodeName.toLowerCase() !== "select" && !mw_div.hasClass("click_out")) {

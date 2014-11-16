@@ -55,3 +55,7 @@ a.invisible_link:visited {
   visibility: hidden;
   border: transparent;
 }
+
+.ui-widget {
+  z-index: 1200;
+}
