@@ -1,4 +1,9 @@
-<% settings = Setting.plugin_a_common_libs || { } %>
+<% settings = Setting.plugin_a_common_libs.is_a?(Hash) ? Setting.plugin_a_common_libs : {} %>
+
+
+<% if settings['enable_font_awesome'] %>
+  <%= stylesheet_link_tag 'font-awesome.css', plugin: :a_common_libs %>
+<% end %>
 
 <% if settings['enable_bootstrap_lib'] %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :plugin => :a_common_libs %>
@@ -31,10 +36,6 @@
   <%= javascript_include_tag :quartermonthpicker, :plugin => :a_common_libs %>
 <% end %>
 
-<%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
-
-<%= javascript_include_tag 'utils.js', :plugin => :a_common_libs %>
-
 <% if settings['enable_javascript_patches'] %>
   <%= javascript_include_tag 'patches.js', :plugin => :a_common_libs %>
 <% end %>
@@ -45,16 +46,16 @@
 <% end %>
 
 <%= stylesheet_link_tag :hint, :plugin => :a_common_libs %>
+<%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
+<%= javascript_include_tag 'utils.js', :plugin => :a_common_libs %>
 
 <script>
 //<![CDATA[
-  RMPlus.Utils = (function(my){
+  RMPlus.Utils = (function (my) {
     var my = my || {};
 
     my.combobox_placeholder = '<%= l(:ajax_placeholder) %>';
-
     my.combobox_404 = '<%= l(:combobox_404) %>';
-
     my.combobox_error = '<%= l(:combobox_error) %>';
 
     return my;
@@ -62,4 +63,4 @@
 //]]>
 </script>
 
-<%= javascript_include_tag :select2_extentions, :plugin => :a_common_libs %>
+<%= javascript_include_tag :select2_extentions, plugin: :a_common_libs %>

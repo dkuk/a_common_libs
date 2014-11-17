@@ -61,7 +61,7 @@
     $('body').on('keyup click mousemove', '#' + fieldId, RMPlus.Utils.debounce(300, function(){
       var $this = $(this);
       $this.addClass('autocomplete');
-      console.log('good function!');
+      // console.log('good function!');
       var value = $this.val();
       var old_value = $this.attr('data-value-was');
       if (value !== old_value) {

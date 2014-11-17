@@ -1,7 +1,10 @@
-
-Array.prototype.contains = function(element){
-    return this.indexOf(element) > -1;
-};
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (searchElement, fromIndex) {
+        for(var i = fromIndex||0, length = this.length; i<length; i++)
+            if(this[i] === searchElement) return i;
+        return -1
+  };
+}
 
 // jQuery plugin to change the type of the html element easily
 (function($) {

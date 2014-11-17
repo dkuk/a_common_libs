@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
   jQuery(document.body).on('click', '.link_to_modal', function () {
     var this_link = jQuery(this);
@@ -35,7 +35,7 @@ $(document).ready(function(){
       jQuery("#mw_content_load").css("left", link.left);
       jQuery("#mw_content_load").css("top", link.top);
       jQuery("#mw_content_load").show();
-      cur_window.load(this_link.attr("href"), function(){show_modal(id)});
+      cur_window.load(this_link.attr("href"), function () { show_modal(id) });
     }
 
     return false;
@@ -45,19 +45,20 @@ $(document).ready(function(){
     var x = event.pageX;
     var y = event.pageY;
     var outside = false;
-    $('[id^="modal-"]').filter(function() {
-      var element = $(this);
-      if(element.css('display') === 'none') {
+    var target = $(event.target);
+    var ui_elements = target.parents('.ui-widget:first');
+    $('[id^="modal-"]').filter( function () {
+      if ($(this).css('display') === 'none') {
         return false;
       }
       return true;
-    }).each(function(){
+    }).each(function () {
       var outside_each = false;
       var m = $(this);
       var left = (parseInt(this.getAttribute('data-left')) || 0);
-      var right = left + m.outerWidth( ) || 0;
+      var right = left + m.outerWidth() || 0;
       var top = (parseInt(this.getAttribute('data-top')) || 0);
-      var bottom = top + m.outerHeight( ) || 0;
+      var bottom = top + m.outerHeight() || 0;
       if (left > 0 && right > 0 && top > 0 && bottom > 0){
         if (x < left || x > right || y < top || y > bottom){
           outside_each = true;
@@ -68,7 +69,7 @@ $(document).ready(function(){
       }
       outside = outside || outside_each;
     });
-    if( !$(event.target).hasClass("modal_window") && $(event.target).parents("div.modal_window").length == 0 && outside){
+    if (!target.hasClass("modal_window") && target.parents("div.modal_window").length == 0 && outside && ui_elements.length < 1) {
       $("div.modal_window").hide();
     }
   });
@@ -76,8 +77,8 @@ $(document).ready(function(){
   jQuery(document.body).on('mouseleave', "div.modal_window", function (evt) {
     var mw_div = jQuery(evt.target)
 
-    if (!mw_div.hasClass('modal_window')){
-      mw_div = jQuery(evt.target).parents(".modal_window")
+    if (!mw_div.hasClass('modal_window')) {
+      mw_div = mw_div.parents(".modal_window");
     }
 
     if (evt.target.nodeName.toLowerCase() !== "select" && !mw_div.hasClass("click_out")) {
@@ -116,7 +117,7 @@ $(document).ready(function(){
 });
 
 
-function append_loader(){
+function append_loader () {
   if (jQuery("#mw_content_load").length == 0) {
     jQuery(document.body).append('<div id="mw_content_load" class="loader">&nbsp;</div>');
   }
@@ -140,20 +141,25 @@ function show_modal(id) {
   var doc_h = jQuery(window).height();
   var margin = 5;
 
+  if (jQuery("#"+id).hasClass("block-preffered")) {
+    if ((jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width + link.left) && mw_width < link.left + link.width) {
+      link.left = link.left + link.width + margin;
+    }
+    else { link.width = -margin; }
 
-  // if ( (jQuery(window).width() < cur_window.outerWidth()+link.left+link.width+margin) && (link.left < margin+cur_window.outerWidth()) ) {
-  //   borders_w = cur_window.outerWidth()-cur_window.width()
-  //   new_w = (link.left > jQuery(window).width()-(link.left+link.width+margin*2)) ? link.left-borders_w : jQuery(window).width()-(link.left+link.width+borders_w);
-  //   cur_window.width(new_w-margin*2);
-  // }
+    if ((jQuery("#"+id).hasClass("top-preffered") || doc_h < mw_height + link.top + link.height) && mw_height < link.top) {
+      link.height = 0;
+    }
+    else { link.top = link.top + link.height; }
+  }
 
   // right from element - is default
   cur_window.css("left", link.left+link.width+margin+jQuery(document).scrollLeft());
 
-  if( jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width+link.left+link.width+margin) {
+  if (jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width + link.left + link.width + margin) {
     // try to display left if preffered left or no space at right
-    if ( mw_width < link.left) {
-      cur_window.css("left", link.left-margin-mw_width+jQuery(document).scrollLeft());
+    if (mw_width < link.left) {
+      cur_window.css("left", link.left - margin - mw_width + jQuery(document).scrollLeft( ));
     }
   }
 
@@ -161,12 +167,14 @@ function show_modal(id) {
   // vertical position - default down
   cur_window.css('top', link.top+jQuery(document).scrollTop());
 
-  if ( jQuery('#'+id).hasClass('top-preffered') || doc_h < link.top+mw_height-link.height ) { // && cur_window.outerHeight() < link.top+link.height) {
+  if ( jQuery('#'+id).hasClass('top-preffered') || doc_h < link.top + mw_height - link.height) { // && cur_window.outerHeight() < link.top+link.height) {
     // try to display as preffered no space bottom or top-preffered and
     if (mw_height < link.top+link.height) {
       cur_window.css('top', link.top+jQuery(document).scrollTop()+link.height-mw_height);
     }
   }
+
+
 
   cur_window.show();
   cur_window.trigger('modal_window_shown');

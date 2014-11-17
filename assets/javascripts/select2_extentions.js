@@ -84,10 +84,12 @@ RMPlus.Utils = (function(my) {
     var min_search_length = parseInt(selector.getAttribute('data-min-search-length')) || 0;
 
     var data_select2 = [];
+    var init_value = undefined;
     if (selector.tagName.toLowerCase() === 'select'){
       var $selector = $(selector);
+      init_value = ($selector.val() || '').toString();
       $.each($selector.children(), function(){
-        data_select2.push({id: this.value, text: this.innerText });
+        data_select2.push({id: this.value, text: this.textContent });
       });
       $selector.children().remove();
       $selector.changeElementType('input');
@@ -95,12 +97,22 @@ RMPlus.Utils = (function(my) {
       selector = document.getElementById(selector.id);
     }
     var $selector = $(selector);
+    if (init_value) { $selector.val(init_value); }
 
     $selector.select2({ width: width,
                         placeholder: placeholder,
                         allowClear: true,
                         minimumInputLength: min_search_length,
                         containerCssClass: 'hint--error hint--top hint--rounded',
+                        initSelection: function(element, callback) {
+                          var data = {};
+                          if (init_value) {
+                            for (var sch = 0; sch < data_select2.length; sch ++) {
+                              if (data_select2[sch].id.toString() == init_value) { data = data_select2[sch]; break; }
+                            }
+                          }
+                          callback(data);
+                        },
                         query: function (query) {
                           var data = {}, found = false, text, term;
                           data.results = [];

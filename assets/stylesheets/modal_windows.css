@@ -48,22 +48,14 @@
   padding-top: 2px;
 }
 
-a.invisible_link{
+a.invisible_link,
+a.invisible_link:hover,
+a.invisible_link:link,
+a.invisible_link:visited {
   visibility: hidden;
   border: transparent;
 }
 
-a.invisible_link:hover{
-  visibility: hidden;
-  border: transparent;
-}
-
-a.invisible_link:link{
-  visibility: hidden;
-  border: transparent;
-}
-
-a.invisible_link:visited{
-  visibility: hidden;
-  border: transparent;
+.ui-widget {
+  z-index: 1200;
 }
