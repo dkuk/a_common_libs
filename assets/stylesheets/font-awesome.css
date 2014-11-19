@@ -50,6 +50,13 @@
   font-size: 200%;
 }
 
+.rm-rotate-315:before {
+  /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);*/
+  -webkit-transform: rotate(315deg);
+  -ms-transform: rotate(315deg);
+  transform: rotate(315deg);
+}
+
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.eot?v=4.2.0');
