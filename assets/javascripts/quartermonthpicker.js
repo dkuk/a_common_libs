@@ -102,7 +102,7 @@
 
         this.element.prop('readonly', 'readonly');
         this.updateView();
-       
+
     };
 
     QuarterMonthPicker.prototype = {
@@ -146,7 +146,7 @@
         },
 
         move: function () {
-            var padding = { top: 2, left: 0 };            
+            var padding = { top: 2, left: 0 };
             this.container.css({
                 top: this.element.offset().top + this.element.outerHeight() + padding.top,
                 left: this.element.offset().left,
@@ -158,7 +158,7 @@
                     right: 0
                 });
             }
-        },       
+        },
 
         show: function (e) {
             this.container.show();
@@ -208,28 +208,28 @@
             // set new startDate and endDate
             var newStart = moment(el.attr('data-start-date'));
             var newEnd = moment(el.attr('data-end-date'));
-            
+
             // EXPAND ALGORYTHM
             // if( newStart > this.startDate && newEnd < this.endDate) {
             //    // new selection begans
             //    this.startDate = newStart;
-            //    this.endDate = newEnd; 
+            //    this.endDate = newEnd;
             // } else if( newStart > this.endDate) {
             //    // extend selection at the end
-            //    this.endDate = newEnd; 
+            //    this.endDate = newEnd;
             // } else if( newEnd < this.startDate) {
             //    // extend selection at the beginig
-            //    this.startDate = newStart; 
+            //    this.startDate = newStart;
             // } else if( newEnd == this.endDate) {
             //    // shrink selection at the end
-            //    this.endDate = moment(newStart).subtract('day',1); 
+            //    this.endDate = moment(newStart).subtract('day',1);
             // } else if( newStart == this.startDate) {
             //    // shrink selection at the begining
-            //    this.startDate = moment(newEnd).add('day',1); 
+            //    this.startDate = moment(newEnd).add('day',1);
             // } else {
             //    // new selection begans
             //    this.startDate = newStart;
-            //    this.endDate = newEnd;  
+            //    this.endDate = newEnd;
             // }
 
             // DOUBLE SELECT ALGORYTHM
@@ -238,13 +238,13 @@
                 this.startDate = newStart;
                 this.endDate = newEnd;
             } else {
-                this.selectCount++; 
+                this.selectCount++;
                 if( newStart > this.endDate) {
                     // extend selection at the end
-                    this.endDate = newEnd; 
+                    this.endDate = newEnd;
                 } else if( newEnd < this.startDate) {
                     // extend selection at the beginig
-                    this.startDate = newStart; 
+                    this.startDate = newStart;
                 } else {
                     this.startDate = newStart;
                     this.endDate = newEnd;
@@ -271,7 +271,7 @@
             this.updateView();
             if(e){
                 e.stopPropagation();
-            }            
+            }
         },
 
         renderQuarter: function (year, quarter) {
@@ -324,7 +324,7 @@
                          '<div class="qmp-year-label qmp-daterange" data-start-date="'+moment([year,0,1]).format('YYYY-MM-DD')+'" data-end-date="'+moment([year,11,1]).endOf('month').format('YYYY-MM-DD')+'">'+
                            '<span>'+year.toString()+'</span>'+
                          '</div>'+
-                        '</div>' 
+                        '</div>'
             for(var i=1; i<=4; i++)
                 html += this.renderQuarter(year, i);
 
