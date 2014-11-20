@@ -42,11 +42,21 @@ $(document).ready(function () {
   });
 
   $(document.body).on('click', function (event) {
+
     var x = event.pageX;
     var y = event.pageY;
     var outside = false;
     var target = $(event.target);
-    var ui_elements = target.parents('.ui-widget:first');
+    var ui_element = false;
+    var ui_parents = target.parents('.ui-datepicker-current, .ui-datepicker-prev, .ui-datepicker-next, .ui-widget');
+    // too many check and dirty code - due jquery bug while searching through ui elements
+    if (ui_parents.length > 0 || target.hasClass('ui-datepicker-current') || target.hasClass('ui-datepicker-prev') || target.hasClass('ui-datepicker-next') || target.hasClass('ui-widget')) {
+      ui_element = true;
+    }
+    // console.log('CLICK!!!!!');
+    // console.dir(target);
+    // console.dir(ui_parents);
+    // console.dir(target.closest('.ui-widget'));
     $('[id^="modal-"]').filter( function () {
       if ($(this).css('display') === 'none') {
         return false;
@@ -69,7 +79,7 @@ $(document).ready(function () {
       }
       outside = outside || outside_each;
     });
-    if (!target.hasClass("modal_window") && target.parents("div.modal_window").length == 0 && outside && ui_elements.length < 1) {
+    if (!target.hasClass("modal_window") && target.parents("div.modal_window").length == 0 && outside && !ui_element) {
       $("div.modal_window").hide();
     }
   });
