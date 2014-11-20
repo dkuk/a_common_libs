@@ -25,6 +25,10 @@
   text-align: center;
 }
 
+.rm-no-icon:before {
+  content: ' ';
+}
+
 .rm-icon.rm-nom:before {
   margin: 0;
 }
