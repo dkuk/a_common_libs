@@ -20,6 +20,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.rm-fw:before {
+  width: 1em;
+  text-align: center;
+}
+
 .rm-icon.rm-nom:before {
   margin: 0;
 }
