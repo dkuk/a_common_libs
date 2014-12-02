@@ -11,7 +11,9 @@
   <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
 <% else %>
   <% if settings['enable_bootstrap_lib_for_luxury_buttons'] &&
-        ((controller_name == 'issues' && action_name == 'show') || ['lu_checklists', 'lu_coordinates'].include?(controller_name)) %>
+        ((controller_name == 'issues' && action_name == 'show') ||
+         (controller_name == 'projects' && action_name == 'settings') ||
+         ['lu_checklists', 'lu_coordinates'].include?(controller_name)) %>
     <%= javascript_include_tag 'bootstrap.luxury_buttons.min.js', :plugin => :a_common_libs %>
     <%= stylesheet_link_tag 'bootstrap.luxury_buttons.min.css', :plugin => :a_common_libs %>
     <%= javascript_include_tag 'bootstrap.modal.ext.js', :plugin => :a_common_libs %>
