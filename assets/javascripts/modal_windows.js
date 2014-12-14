@@ -149,7 +149,10 @@ function show_modal(id) {
   var mw_height = cur_window.outerHeight();
   var doc_w = jQuery(window).width();
   var doc_h = jQuery(window).height();
-  var margin = 5;
+  var margin = 7;
+
+  var mw_class_lr = 'mw-right';
+  var mw_class_tb = 'mw-bottom';
 
   if (jQuery("#"+id).hasClass("block-preffered")) {
     if ((jQuery("#"+id).hasClass("left-preffered") || doc_w < mw_width + link.left) && mw_width < link.left + link.width) {
@@ -170,6 +173,7 @@ function show_modal(id) {
     // try to display left if preffered left or no space at right
     if (mw_width < link.left) {
       cur_window.css("left", link.left - margin - mw_width + jQuery(document).scrollLeft( ));
+      mw_class_lr = 'mw-left';
     }
   }
 
@@ -181,10 +185,12 @@ function show_modal(id) {
     // try to display as preffered no space bottom or top-preffered and
     if (mw_height < link.top+link.height) {
       cur_window.css('top', link.top+jQuery(document).scrollTop()+link.height-mw_height);
+      mw_class_tb = 'mw-top'
     }
   }
 
-
+  cur_window.removeClass('mw-top').removeClass('mw-left').removeClass('mw-right').removeClass('mw-bottom');
+  cur_window.addClass(mw_class_lr).addClass(mw_class_tb);
 
   cur_window.show();
   cur_window.trigger('modal_window_shown');
