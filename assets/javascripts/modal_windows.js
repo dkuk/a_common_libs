@@ -80,7 +80,7 @@ $(document).ready(function () {
       outside = outside || outside_each;
     });
     if (!target.hasClass("modal_window") && target.parents("div.modal_window").length == 0 && outside && !ui_element) {
-      $("div.modal_window").hide();
+      $("div.modal_window").hide().trigger('modal_window_hidden');
     }
   });
 
