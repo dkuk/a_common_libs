@@ -203,7 +203,7 @@ RMPlus.LIB = (function (my) {
 
 
 $(document).ready(function () {
-
+  $('.modal script[type="text/javascript"]').remove();
   $('.modal').prependTo(document.body);
 
   $(document.body).on('show', '.modal', function () {
