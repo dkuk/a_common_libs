@@ -17,13 +17,18 @@
         this.closeAfter2Click = false;
         this.yearsBeforeAfter = 1;
 
-        this.locale = {
-            clearButton: 'Очистить',
-            closeButton: 'Закрыть',
-            // monthNames: moment()._lang._monthsShort.slice(),
-            monthNames: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
-            quarterNames: ['I кв.','II кв.','III кв.','IV кв.']
-        };
+
+        if (typeof RMPlus.Utils.locale != 'undefined') {
+            this.locale = RMPlus.Utils.locale;
+        } else {
+            this.locale = {
+                clearButton: 'Очистить',
+                closeButton: 'Закрыть',
+                // monthNames: moment()._lang._monthsShort.slice(),
+                monthNames: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+                quarterNames: ['I кв.','II кв.','III кв.','IV кв.']
+            };
+        }
         this.cb = function () { };
 
         // by default, the daterangepicker element is placed at the bottom of HTML body
@@ -35,8 +40,7 @@
 
         if (this.element.is('input')) {
             this.element.on({
-                click: $.proxy(this.show, this),
-                focus: $.proxy(this.show, this)
+                click: $.proxy(this.show, this)
             });
         } else {
             this.element.on('click', $.proxy(this.show, this));
@@ -161,6 +165,7 @@
         },
 
         show: function (e) {
+            console.log('click!!!!')
             this.container.show();
             this.move();
 

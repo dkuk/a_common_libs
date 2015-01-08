@@ -15,3 +15,10 @@ en:
   combobox_404: "404 error, URL not found"
 
   label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
+
+  lib_clear: "Clear"
+  lib_close: "Close"
+  date:
+    standalone_abbr_month_names: [~, jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    abbr_month_names_rmp: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    quarter_names: ['I qr.','II qr.','III qr.','IV qr.']
