@@ -196,4 +196,72 @@ a.select2-search-choice-close:hover span {
 
 a.rmp-fast-link {
 margin-left: 5px;
+
+/* ---- Calendars support and contextual menu ----- */
+
+#top-menu a span.count.updated {
+  background-color: #76a8d7;
+}
+
+#top-menu a span.count.unread {
+  background-color: #c3e26b;
+}
+
+.rmplus_date_links {
+  overflow: hidden;
+}
+
+.rmplus_date_links a {
+  display: block;
+  padding: 3px;
+  float: left;
+}
+
+.rmplus_date_links a.current {
+  padding: 2px;
+}
+
+.rmplus_date_links span.arr {
+  float: left;
+  display: block;
+  font-size: 17px;
+  margin: 0 5px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* hide text separators */
+#content > .contextual {
+  font-size: 0;
+}
+
+#content > .contextual > a,
+#content > .contextual > form > a,
+#content > .contextual > .rmplus_date_links {
+  display: block;
+  float: left;
+  line-height: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12px;
+}
+
+#content > .contextual > a.selected,
+#content > .contextual > .rmplus_date_links > a {
+  padding: 0 2px;
+}
+
+div.contextual {
+  margin: 0;
+  padding: 0;
+}
+
+#content > .contextual > a,
+#content > .contextual > .dropdowns,
+#content > .contextual > .rmplus_date_links {
+  margin: 0;
+  margin-left: 5px;
+}
+
+#content > .contextual > .rmplus_date_links {
+  margin-left: 8px;
 }

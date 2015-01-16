@@ -63,6 +63,12 @@
     my.combobox_404 = '<%= l(:combobox_404) %>';
     my.combobox_error = '<%= l(:combobox_error) %>';
 
+    my.locale = { clearButton: '<%= I18n.t(:lib_clear) %>',
+                  closeButton: '<%= I18n.t(:lib_close) %>',
+                  monthNames: <%= I18n.t('date.abbr_month_names_rmp')[1..12].to_json.html_safe %>,
+                  quarterNames: <%= I18n.t('date.quarter_names')[0..3].to_json.html_safe %>
+                }
+
     return my;
   })(RMPlus.Utils || {});
 //]]>
