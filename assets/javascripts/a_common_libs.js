@@ -1,11 +1,5 @@
 // Namespace declaration
-var RMPlus = (function (my) {
-  var my = my || {};
-  return my;
-})(RMPlus || {});
-
 $(document).ready(function(){
-
   $('select.select2, input[type="hidden"], input.ui-autocomplete-input').each(function(){
     if (this.getAttribute('data-combobox') === 'true'){
       RMPlus.Utils.makeSelect2Combobox(this);
@@ -22,5 +16,6 @@ $(document).ready(function(){
       }
     }
   });
+
 
 });

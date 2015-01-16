@@ -1,3 +1,18 @@
+ $(document).ready(function () {
+  // Fast editing (pencil near select box fields)
+  $('<a href="#" class="icon icon-edit rmp-fast-link no_line"></a>').insertAfter('.rmp-fast-edit');
+  $(document.body).on('click', 'a.rmp-fast-link', function(){
+    var sb_val = $(this).prev('select.rmp-fast-edit').val();
+    if(sb_val!='')
+      document.location.href = $(this).prev('select.rmp-fast-edit').attr('data-edit-url').split('0').join(sb_val);
+    else
+      document.location.href = $(this).prev('select.rmp-fast-edit').attr('data-add-url');
+    return false;
+    });
+
+});
+
+
 if (!Array.prototype.indexOf) {
   Array.prototype.indexOf = function (searchElement, fromIndex) {
         for(var i = fromIndex||0, length = this.length; i<length; i++)

@@ -193,3 +193,7 @@ a.select2-search-choice-close:hover span {
   text-decoration: none;
   border: none;
 }
+
+a.rmp-fast-link {
+margin-left: 5px;
+}
