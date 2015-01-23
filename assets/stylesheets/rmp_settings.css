@@ -61,3 +61,7 @@ table.plugin_settings tr:first-child td {
 table.plugin_settings tr:last-child td {
   border-bottom-width: 0px;
 }
+
+.rmp-fast-link {
+  margin-left: 5px;
+}
