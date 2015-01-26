@@ -2,7 +2,7 @@ Redmine::Plugin.register :a_common_libs do
   name 'A common libraries'
   author 'Danil Kukhlevskiy'
   description 'This is a plugin for including common libraries'
-  version '1.1.1'
+  version '1.1.2'
   url 'http://rmplus.pro/'
   author_url 'http://rmplus.pro/'
 
