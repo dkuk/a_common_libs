@@ -65,3 +65,7 @@ table.plugin_settings tr:last-child td {
 .rmp-fast-link {
   margin-left: 5px;
 }
+
+input.main-form-button {
+  font-size: 16pt;
+}
