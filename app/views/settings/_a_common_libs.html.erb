@@ -5,19 +5,19 @@
 <div style="overflow: hidden">
   <label style="margin-left: 0px; width: auto; font-weight: normal;">
     <%=check_box_tag 'settings[enable_select2_lib]', true, settings['enable_select2_lib'] %>
-    &mdash; <%= l(:settings_enable_select2_lib) %>
+    &mdash; <%= l(:settings_enable_select2_lib).html_safe %>
   </label>
 </div>
 <div style="overflow: hidden">
   <label style="margin-left: 0px; width: auto; font-weight: normal;">
     <%=check_box_tag 'settings[enable_highcharts_lib]', true, settings['enable_highcharts_lib'] %>
-    &mdash; <%=l(:settings_enable_highcharts_lib) %>
+    &mdash; <%=l(:settings_enable_highcharts_lib).html_safe %>
   </label>
 </div>
 <div style="overflow: hidden">
   <label style="margin-left: 0px; width: auto; font-weight: normal;">
     <%=check_box_tag 'settings[enable_bootstrap_lib]', true, settings['enable_bootstrap_lib'] %>
-    &mdash; <%=l(:settings_enable_bootstrap_lib) %>
+    &mdash; <%=l(:settings_enable_bootstrap_lib).html_safe %>
   </label>
 </div>
 <div style="overflow: hidden">
@@ -29,7 +29,7 @@
 <div style="overflow: hidden">
   <label style="margin-left: 0px; width: auto; font-weight: normal;">
     <%=check_box_tag 'settings[enable_qmpicker]', true, settings['enable_qmpicker'] %>
-    &mdash; <%=l(:settings_enable_qmpicker_lib) %>
+    &mdash; <%=l(:settings_enable_qmpicker_lib).html_safe %>
   </label>
 </div>
 <div style="overflow: hidden">
