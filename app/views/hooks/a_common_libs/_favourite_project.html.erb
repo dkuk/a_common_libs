@@ -1,0 +1,6 @@
+<%= labelled_fields_for :pref, @user.pref do |pref_fields| %>
+  <p>
+    <%= pref_fields.select( :favourite_project_id,
+                            '<option value=""></option>'.html_safe + project_tree_options_for_select(Project.all, selected: @user.favourite_project)) %>
+  </p>
+<% end %>
