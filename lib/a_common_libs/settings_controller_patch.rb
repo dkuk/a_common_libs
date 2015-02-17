@@ -8,7 +8,6 @@ module ACommonLibs
 
       base.class_eval do
         alias_method_chain :plugin, :a_common_libs
-        helper :cl_settings_page
       end
     end
 
