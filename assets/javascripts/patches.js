@@ -55,7 +55,19 @@
     this
         .arrow()
         .css(position, delta ? (50 * (1 - (delta + this.arrow()[0].offsetWidth) / dimension) + "%") : '')
-  }
+  };
+
+  $.fn.popover.Constructor.prototype.old_init = $.fn.popover.Constructor.prototype.init;
+  $.fn.popover.Constructor.prototype.init = function(type, element, options) {
+    var res = this.old_init(type, element, options);
+    if (options && options.resize_elem) {
+      var v_this = this;
+      $(options.resize_elem).on('resize', function() {
+        if (v_this.tip().hasClass('in')) v_this.show();
+      });
+    }
+    return res;
+  };
 })(window.jQuery);
 
 (function(){
