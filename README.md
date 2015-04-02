@@ -1,4 +1,6 @@
 ## A common libraries
+[bitbucket]: https://dkuk@bitbucket.org/dkuk/a_common_libs
+Moved to [BitBucket][bitbucket].
 
 #### Plugin for Redmine
 
